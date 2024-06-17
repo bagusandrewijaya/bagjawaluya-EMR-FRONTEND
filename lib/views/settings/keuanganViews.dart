@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:fluent_ui/fluent_ui.dart' as ft;
@@ -14,7 +15,7 @@ import 'package:sibagjaapps/controllers/providers/P_Billing_Views.dart';
 import 'package:sibagjaapps/models/M_billingList.dart';
 import 'package:sibagjaapps/views/settings/components/Checkoutpages.dart';
 import 'package:sibagjaapps/views/settings/components/masterbiaya.dart';
-
+import 'package:go_router/go_router.dart' as ct ;
 import '../../models/M_ListButton.dart';
 
 class KeuanganModules extends StatefulWidget {
@@ -118,9 +119,9 @@ int i = 0;
                 ]else if(i==1)...[
             
                 ]else if(i== 2)...[
-                CheckoutPage()
+               
                 ]else if(i == 3)...[
-                  BillingInformationWidget()
+              BillingInformationWidget(idTagihan: '',)
                 ]
               ],
             );
@@ -173,6 +174,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       onDateRangeSelected: (DateRange? value) {
                         setState(() {
                           selectedDateRange = value;
+                         
                         });
                       },
                       selectedDateRange: selectedDateRange,
@@ -237,7 +239,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         DataColumn(label: Text('Rp')),
                         DataColumn(label: Text('Status Pembayaran')),
                       ],
-                      source: _DataSource(widget.data),
+                      source: _DataSource(widget.data,context),
                     )),
               ),
             ],
@@ -284,8 +286,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
 class _DataSource extends DataTableSource {
   final List<MBillingList> _data;
-
-  _DataSource(this._data);
+BuildContext context;
+  _DataSource(this._data,this.context);
 
   @override
   bool get isRowCountApproximate => false;
@@ -303,12 +305,18 @@ class _DataSource extends DataTableSource {
       DataCell(Text(_data[index].namaPasien.toString())),
       DataCell(Text(_data[index].batasBayar.toString().substring(0,11))),
       DataCell(Text(_data[index].total.toString())),
-      DataCell(Container(
-        child: Text(_data[index].statusPaid == "0" ? "Belum DiBayarkan": "Sudah Dibayarkan" ),
-        padding: EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          color:_data[index].statusPaid != "0" ? Colors.green: Colors.red )
-        
+      DataCell(GestureDetector(
+        onTap: () {
+         
+          context.pushNamed('checkout',pathParameters: {"idtagihan" : _data[index].idTagihan.toString()});
+        },
+        child: Container(
+          child: AutoSizeText(_data[index].statusPaid == "0" ? "Belum DiBayarkan": "Sudah Dibayarkan" ),
+          padding: EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color:_data[index].statusPaid != "0" ? Colors.green: Colors.red )
+          
+        ),
       )),
     ]);
   }
@@ -359,9 +367,11 @@ class _SideMenuContainerState extends State<SideMenuContainer> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text("Rp ${i.title == null ? "0" : i.title}"),
+                          Text("${i.title == null ? "0" : i.title}",style: TextStyle(
+                            fontWeight: FontWeight.bold,fontSize: 18
+                          ),),
                           SizedBox(height: 8.0),
-                          Text(
+                         if(i.title!.toLowerCase() != "sudah dibayar") Text(
                             'Rp ${i.total == null ?   "0" : i.total}',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,

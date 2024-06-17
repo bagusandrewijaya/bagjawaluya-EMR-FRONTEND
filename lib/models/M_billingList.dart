@@ -4,13 +4,16 @@ class MBillingList {
   String? batasBayar;
   String? statusPaid;
   String? total;
+  String? idTagihan;
 
   MBillingList(
       {this.namaPasien,
       this.createdAt,
       this.batasBayar,
       this.statusPaid,
-      this.total});
+      this.total,
+      this.idTagihan
+      });
 
   MBillingList.fromJson(Map<String, dynamic> json) {
     namaPasien = json['NamaPasien'];
@@ -18,6 +21,7 @@ class MBillingList {
     batasBayar = json['batas_bayar'];
     statusPaid = json['statusPaid'];
     total = json['total'];
+    idTagihan = json['idTagihan'];
   }
 
   Map<String, dynamic> toJson() {
@@ -27,6 +31,7 @@ class MBillingList {
     data['batas_bayar'] = this.batasBayar;
     data['statusPaid'] = this.statusPaid;
     data['total'] = this.total;
+    data['idTagihan'] = this.idTagihan;
     return data;
   }
 }

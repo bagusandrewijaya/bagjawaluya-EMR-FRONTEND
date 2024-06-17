@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class BillingInformationWidget extends StatefulWidget {
-  const BillingInformationWidget({Key? key}) : super(key: key);
+  final String idTagihan;
+  const BillingInformationWidget({Key? key, required this.idTagihan}) : super(key: key);
 
   @override
   _BillingInformationWidgetState createState() => _BillingInformationWidgetState();

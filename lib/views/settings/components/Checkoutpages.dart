@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 class CheckoutPage extends StatefulWidget {
+  final String? idTagihan;
+
+  const CheckoutPage({super.key, this.idTagihan});
   @override
   State<CheckoutPage> createState() => _CheckoutPageState();
 }
@@ -10,8 +13,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
   String? selectedPaymentMode;
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Row(
+    return Row(
         children: [
           Expanded(
             flex: 2,
@@ -27,8 +29,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
           SizedBox(height: 20),
           _buildOrderSummary(),
         ],
-      ),
-    );
+      );
   }
 
   Widget _buildAddressSection() {

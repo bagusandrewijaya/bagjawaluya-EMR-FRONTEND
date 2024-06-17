@@ -9,11 +9,13 @@ import 'package:sibagjaapps/views/rekam_medis/components/parts/detailsMenu/FormC
 import 'package:sibagjaapps/views/rekam_medis/components/parts/detailsMenu/FormPKP/Formspengkajian.dart';
 
 import 'package:sibagjaapps/views/rekam_medis/mainRM.dart';
+import 'package:sibagjaapps/views/settings/components/Checkoutpages.dart';
 import 'package:sibagjaapps/views/settings/settings.dart';
 import 'package:sibagjaapps/views/settings/keuanganViews.dart';
 import 'package:sibagjaapps/views/splashscreens/splashscreens.dart';
 
 import '../../views/home/children/subhomes.dart';
+import '../../views/settings/components/masterbiaya.dart';
 
 class AppNavigation {
   AppNavigation._();
@@ -103,8 +105,30 @@ class AppNavigation {
                         ) =>
                             FadeTransition(opacity: animation, child: child),
                       );
+
+                      
                     },
                   ),
+
+ GoRoute(
+                    path: "checkout/:idtagihan",
+                    name: "checkout",
+                    pageBuilder: (context, state) {
+                       final String idtagihan = state.pathParameters['idtagihan'] ?? '';
+                      return CustomTransitionPage<void>(
+                        key: state.pageKey,
+                        child:           CheckoutPage(idTagihan: idtagihan,),
+                        transitionsBuilder: (
+                          context,
+                          animation,
+                          secondaryAnimation,
+                          child,
+                        ) =>
+                            FadeTransition(opacity: animation, child: child),
+                      );
+                    },
+                  ),
+                      
                 ],
               ),
             ],
