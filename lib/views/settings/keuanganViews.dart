@@ -14,6 +14,7 @@ import 'package:provider/provider.dart';
 import 'package:sibagjaapps/controllers/providers/P_Billing_Views.dart';
 import 'package:sibagjaapps/models/M_billingList.dart';
 import 'package:sibagjaapps/views/settings/components/Checkoutpages.dart';
+import 'package:sibagjaapps/views/settings/components/createpembayaran.dart';
 import 'package:sibagjaapps/views/settings/components/masterbiaya.dart';
 import 'package:go_router/go_router.dart' as ct ;
 import '../../models/M_ListButton.dart';
@@ -119,7 +120,7 @@ int i = 0;
                 ]else if(i==1)...[
             
                 ]else if(i== 2)...[
-               
+               CheckoutPageManual()
                 ]else if(i == 3)...[
               BillingInformationWidget(idTagihan: '',)
                 ]

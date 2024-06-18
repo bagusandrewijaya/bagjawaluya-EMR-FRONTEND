@@ -16,12 +16,14 @@ import 'package:sibagjaapps/views/rekam_medis/components/parts/detailsMenu/dropd
 class CardTop extends StatefulWidget {
   List<DetailsPatients> data;
   TextEditingController catatan;
+  bool? showed ;
  final void Function() savings;
    CardTop({
     super.key,
     required this.data,
     required this.catatan,
     required this.savings,
+    required this.showed
   });
 
 
@@ -122,7 +124,7 @@ class _CardTopState extends State<CardTop> {
                                       ],
                                     ),
                                     
-                                    Row(
+                                  if(widget.showed == true)  Row(
                                       children: [
                                           Center(
             child: Container(
@@ -374,7 +376,7 @@ class _CardTopState extends State<CardTop> {
                 ),
               )
             ),
-            Expanded(
+         if(widget.showed == true)   Expanded(
               child: Container(
                 padding: EdgeInsets.all(8),
                 color: Color(0xff7286D3),

@@ -34,5 +34,9 @@ class API {
 static String UpdatePatient = '${baseUrl}UpdatePatient';
 static String BillingGet = '${baseUrl}BillingGet';
 static String GetListCard = '${baseUrl}GetListCard';
+static String DetailsBilling = '${baseUrl}DetailsBilling';
+static String DetailsPaketLayananDiluar = '${baseUrl}DetailsPaketLayananDiluar';
+static String DeletePaketDiluarLayanan = '${baseUrl}DeletePaketDiluarLayanan';
+
    
 }

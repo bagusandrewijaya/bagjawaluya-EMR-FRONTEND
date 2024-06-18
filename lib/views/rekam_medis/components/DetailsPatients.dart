@@ -65,6 +65,7 @@ class _DetailsPatientState extends ft.State<DetailsPatient> {
                         children: [
                           isopen
                               ? CardTop(
+                                showed: true,
                                 catatan: prov.catatanPasien,
                                   data: prov.data,
                                   savings: (){
