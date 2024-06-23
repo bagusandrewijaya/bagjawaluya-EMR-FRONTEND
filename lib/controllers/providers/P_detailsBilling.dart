@@ -4,6 +4,7 @@ import 'package:sibagjaapps/controllers/apiservices/S_DetailsPatients.dart';
 import 'package:sibagjaapps/models/M_DetailsTagiham.dart';
 import 'package:sibagjaapps/models/M_ModelTagihanDiluar.dart';
 import 'package:sibagjaapps/models/M_detailsPatients.dart';
+import 'package:toastification/toastification.dart';
 
 class ProvidersDetailsBilling extends ChangeNotifier {
   APIDetailsBilling _service = APIDetailsBilling();
@@ -46,11 +47,22 @@ class ProvidersDetailsBilling extends ChangeNotifier {
   }
 
      ADDpaketLayanan(idKey,context) async {
+      print( idKey);
          int a = await _service.ADDPaketLayanan(
           amount: harga.text.replaceAll('RP. ', '').replaceAll('.', ''), idlayanan: idKey, namaLayanan: layanan.text, context: context);
       if (a == 201) {
+      harga.clear();
+      layanan.clear();
         FetchData(idtagihan);
         notifyListeners();
+           toastification.show(
+          type: ToastificationType.success,
+          style: ToastificationStyle.flat,
+          context: context,
+          title: Text('Berhasil'),
+          description: Text("paket disimpan"),
+          autoCloseDuration: const Duration(seconds: 5),
+        );
         Navigator.pop(context);
       }
     }

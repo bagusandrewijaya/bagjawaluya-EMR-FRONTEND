@@ -59,14 +59,7 @@ Future<int> ADDPaketLayanan({
     "harga" : amount,
     "namaTagihan" : namaLayanan
    });
-   toastification.show(
-          type: ToastificationType.success,
-          style: ToastificationStyle.flat,
-          context: context,
-          title: Text('Berhasil'),
-          description: Text("paket disimpan"),
-          autoCloseDuration: const Duration(seconds: 5),
-        );
+LOG.logger.t(jsonDecode(response.body));
      return response.statusCode;
 
 } 

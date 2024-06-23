@@ -8,12 +8,12 @@ class ModelTagihanDiluar {
   String? idTagihan;
   String? noRMFK;
   String? tagihanBulanan;
-  Null? tagihanObat;
+  String? tagihanObat;
   String? tagihanDiluarLayanan;
-  Null? typePayment;
+  String? typePayment;
   String? statusPaid;
   String? batasBayar;
-  Null? approvedBy;
+  String? approvedBy;
   String? createdAt;
   String? updateAt;
   String? flaggingType;
