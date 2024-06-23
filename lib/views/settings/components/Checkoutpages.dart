@@ -1,10 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:fluent_ui/fluent_ui.dart' as ft;
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
-
 import 'package:sibagjaapps/controllers/providers/P_detailsBilling.dart';
+import 'package:sibagjaapps/utils/idCurrencyFormater/currencyIdr.dart';
 import 'package:sibagjaapps/views/rekam_medis/components/parts/detailsMenu/cardProfile.dart';
 
 class CheckoutPage extends StatefulWidget {
@@ -57,38 +59,239 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     ),
                   ),
                   SizedBox(height: 20),
-                 Expanded(
-      child: Container(
-        color: Colors.white,
-        child: Padding(
-          padding: EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('List Biaya Di luar Pelayanan',
-                      style: TextStyle(fontWeight: FontWeight.bold)),
-                  Text('${p.tagihan.length} items'),
-                ],
-              ),
-              SizedBox(height: 16),
-              ...p.tagihan
-                  .map((item) => ListPaketCard(
-                        nama: p.tagihan[0].namaTagihan.toString(),
-                        price: p.tagihan[0].harga.toString(),
-                        delete: () {
-                          p.DeleteLayanan(p.tagihan[0].idKEY);
-                          print("object");
+                  Expanded(
+                    child: Container(
+                      color: Colors.white,
+                      child: Padding(
+                        padding: EdgeInsets.all(16),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text('List Biaya Di luar Pelayanan',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold)),
+                                ft.Row(
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        showModalBottomSheet(
+                                          context: context,
+                                          constraints: BoxConstraints(
+                                            maxWidth: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.3,
+                                          ),
+                                          builder: (BuildContext context) {
+                                            return Container(
+                                              padding: EdgeInsets.all(8),
+                                              color: Colors.white,
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: <Widget>[
+                                                  Text("Tambah Biaya Diluar Pelayanan",style: TextStyle(
+                                                    fontWeight: FontWeight.bold,fontSize: 18
+                                                  ),),
+                                                  Gap(8),
+                                                  Container(
+                                                      width:MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.3,
+                                                    child: TextField(
+                                                      controller: p.layanan,
+                                                      keyboardType:
+                                                          TextInputType.text,
+                                                      onChanged: (value) {},
+                                                      decoration:
+                                                          InputDecoration(
+                                                        hintText:
+                                                            'Masukan Nama',
+                                                        border:
+                                                            OutlineInputBorder(),
+                                                        enabledBorder:
+                                                            OutlineInputBorder(
+                                                          borderSide: BorderSide(
+                                                              color: const Color
+                                                                  .fromARGB(
+                                                                  126, 0, 0, 0),
+                                                              width: 1.0),
+                                                        ),
+                                                        focusedBorder:
+                                                            OutlineInputBorder(
+                                                          borderSide: BorderSide(
+                                                              color: const Color
+                                                                  .fromARGB(255,
+                                                                  96, 96, 96),
+                                                              width: 2.0),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Gap(8),
+                                                  Container(
+                                                     width:MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.3,
+                                                    child: TextField(
+                                                      controller: p.harga,
+                                                      keyboardType:
+                                                          TextInputType.number,
+                                                      inputFormatters: [
+                                                        CurrencyTextInputFormatter
+                                                            .currency(
+                                                          locale: 'id',
+                                                          decimalDigits: 0,
+                                                          symbol: 'RP. ',
+                                                        ),
+                                                      ],
+                                                      onChanged: (value) {},
+                                                      decoration:
+                                                          InputDecoration(
+                                                        hintText:
+                                                            'Masukan Jumlah',
+                                                        border:
+                                                            OutlineInputBorder(),
+                                                        enabledBorder:
+                                                            OutlineInputBorder(
+                                                          borderSide: BorderSide(
+                                                              color: const Color
+                                                                  .fromARGB(
+                                                                  126, 0, 0, 0),
+                                                              width: 1.0),
+                                                        ),
+                                                        focusedBorder:
+                                                            OutlineInputBorder(
+                                                          borderSide: BorderSide(
+                                                              color: const Color
+                                                                  .fromARGB(255,
+                                                                  96, 96, 96),
+                                                              width: 2.0),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Gap(8),
+
+                                                  Align(alignment: Alignment.bottomRight,child: 
+                         GestureDetector(
+                        onTap: () {
+                          p.ADDpaketLayanan(widget.idTagihan,context);
                         },
-                      ))
-                  .toList(),
-            ],
-          ),
-        ),
+                        child: Container(
+                          width: 250,
+                          height: 50,
+                          decoration: BoxDecoration(color: Color(0xff16181E)),
+                          child: Center(
+                            child: AutoSizeText(
+                              "Simpan Layanan Tambahan",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        )),)
+                                                ],
+                                              ),
+                                            );
+                                          },
+                                        );
+                                      },
+                                      child: Container(
+                                        decoration:
+                                            BoxDecoration(color: Colors.red,borderRadius: BorderRadius.circular(8)),
+                                        padding: EdgeInsets.all(8),
+                                        child: Text("Tambah Layanan Lain",style: TextStyle(
+                                          color: Colors.white
+                                        ),),
+                                      ),
+                                    ),
+                                    Gap(8),
+                                    Text('${p.tagihan.length} items'),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 16),
+                    
+
+                                Expanded(
+                                  child: ListView(
+                                          children: p.tagihan
+                                              .map(
+                                                (item) => ListPaketCard(
+                                                  nama: item.namaTagihan.toString(),
+                                                  price: item.harga.toString(),
+                                                  delete: () {
+                                                 showDialog<String>(
+    context: context,
+    builder: (context) => ft.ContentDialog(
+      title: const ft.Text('Hapus Item?'),
+      content: const Text(
+        'Jika Kamu Menghapus item ini maka tidak dapat di pulihkan',
       ),
-    )
+      actions: [
+        ft.Button(
+          child: const Text('Hapus'),
+          onPressed: () {
+             p.DeleteLayanan(item.idKEY);
+            Navigator.pop(context, 'User deleted file');
+            // Delete file here
+          },
+        ),
+        ft.FilledButton(
+          child: const Text('Batal'),
+          onPressed: () => Navigator.pop(context, 'User canceled dialog'),
+        ),
+      ],
+    ),
+  );
+                                                      
+                                                  },
+                                                ),
+                                              )
+                                              .toList(),
+                                        ),
+                                ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Gap(8),
+                  Expanded(
+                    child: Container(
+                      color: Colors.white,
+                      child: Padding(
+                        padding: EdgeInsets.all(16),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text('Riwayat Uang Masuk Pada Tagihan ini ',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold)),
+                                Text('${p.tagihan.length} items'),
+                              ],
+                            ),
+                            SizedBox(height: 16),
+                            
+                          ],
+                        ),
+                      ),
+                    ),
+                  )
                 ],
               ),
             ),
@@ -99,8 +302,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
       }),
     );
   }
-
-
 
   Widget _buildOrderSummary(ProvidersDetailsBilling p) {
     return Expanded(
@@ -135,92 +336,119 @@ class _CheckoutPageState extends State<CheckoutPage> {
               ),
               SizedBox(height: 16),
               _buildSummaryRow('Total Biaya Bulanan',
-                  '${p.data.isNotEmpty ? p.data[0].tagihanBulanan.toString() : "Mohon Tunggu"}'),
+                  '${p.data.isNotEmpty ? toIDRCurrency(p.data[0].tagihanBulanan!) : "Mohon Tunggu"}'),
               _buildSummaryRow(
                   'Biaya Obat',
-                  ' ${p.data.isNotEmpty ? p.data[0].tagihanObat == null ? "Kosong" : p.data[0].tagihanObat : "Mohon Tunggu"}'),
+                  ' ${p.data.isNotEmpty ? p.data[0].tagihanObat == null ? "Kosong" : toIDRCurrency(p.data[0].tagihanObat!) : "Mohon Tunggu"}'),
               _buildSummaryRow(
                   'Biaya Luar Pelayanan',
-                  ' ${p.data.isNotEmpty ? p.data[0].tagihanDiluarLayanan == null ? "Kosong" : p.data[0].tagihanDiluarLayanan : "Mohon Tunggu"}'),
+                  ' ${p.data.isNotEmpty ? p.data[0].tagihanDiluarLayanan == null ? "Kosong" : toIDRCurrency(p.data[0].tagihanDiluarLayanan!) : "Mohon Tunggu"}'),
               Divider(),
               _buildSummaryRow(
                   'Total Biaya',
-                  ' ${p.data.isNotEmpty ? p.data[0].total == null ? "Kosong" : p.data[0].total : "Mohon Tunggu"}',
+                  ' ${p.data.isNotEmpty ? p.data[0].total == null ? "Kosong" : toIDRCurrency(p.data[0].total!) : "Mohon Tunggu"}',
+                  isTotal: true),
+              _buildTotalPayment(
+                  'Total sudah dibayarkan sejumlah',
+                  ' ${p.data.isNotEmpty ? p.data[0].total == null ? "Kosong" : toIDRCurrency(p.data[0].totalDibayarkan!) : "Mohon Tunggu"}',
+                  Colors.blueAccent,
+                  isTotal: true),
+              _buildTotalPayment(
+                  'Sisa Yang Harus Dibayarkan',
+                  ' ${p.data.isNotEmpty ? p.data[0].total == null ? "Kosong" : toIDRCurrency(p.data[0].totalBelumDibayarkan!) : "Mohon Tunggu"}',
+                  Colors.red,
                   isTotal: true),
               SizedBox(height: 16),
               Text('Payment Details',
                   style: TextStyle(fontWeight: FontWeight.bold)),
               SizedBox(height: 8),
-              DropdownButtonFormField<String>(
-                value: selectedPaymentMode,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Select Payment Mode',
+              Container(
+                margin: EdgeInsets.all(8),
+                padding: EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(width: 1, color: Colors.grey)),
+                child: Column(
+                  crossAxisAlignment: ft.CrossAxisAlignment.end,
+                  children: [
+                    TextFormField(
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'No Transfer',
+                      ),
+                    ),
+                    Gap(8),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Nama Pengirim',
+                      ),
+                    ),
+                    Gap(8),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Jumlah',
+                      ),
+                    ),
+                    SizedBox(height: 8),
+                    GestureDetector(
+                        onTap: () {},
+                        child: Container(
+                          width: 250,
+                          height: 50,
+                          decoration: BoxDecoration(color: Color(0xff16181E)),
+                          child: Center(
+                            child: AutoSizeText(
+                              "Simpan Pembayaran",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ))
+                  ],
                 ),
-                items: ['BCA', 'BRI', 'BNI', 'BSI', 'OTHER', 'CASH']
-                    .map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-                onChanged: (String? newValue) {
-                  setState(() {
-                    selectedPaymentMode = newValue;
-                  });
-                  // Additional logic here
-                },
               ),
-              SizedBox(height: 8),
-              TextFormField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'No Transfer',
-                ),
-              ),
-              Gap(8),
-              TextFormField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Nama Pengirim',
-                ),
-              ),
-              SizedBox(height: 8),
               SizedBox(height: 16),
-              ElevatedButton(
-                onPressed: () {},
-                child: Text(
-                  'Cetak Tagihan',
-                  style: TextStyle(color: Colors.white),
-                ),
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.blue,
-                  minimumSize: Size(double.infinity, 50),
-                ),
+              GestureDetector(
+                onTap: () {},
+                child: ft.Container(
+                    height: 50,
+                    decoration: BoxDecoration(
+                        color: ft.Color.fromARGB(255, 13, 198, 69)),
+                    child: Center(
+                      child: AutoSizeText(
+                        'Verifikasi Pembayaran',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    )),
               ),
               Gap(8),
-              ElevatedButton(
-                onPressed: () {},
-                child: Text(
-                  'Verifikasi Pembayaran',
-                  style: TextStyle(color: Colors.white),
-                ),
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.green,
-                  minimumSize: Size(double.infinity, 50),
-                ),
-              ),
+              GestureDetector(
+                  onTap: () {},
+                  child: ft.Container(
+                    height: 50,
+                    decoration: BoxDecoration(
+                        color: ft.Color.fromARGB(255, 34, 90, 255)),
+                    child: Center(
+                      child: AutoSizeText(
+                        'Bayar Tagihan Menggunakan Saldo Pasien',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  )),
               Gap(8),
-              ElevatedButton(
-                onPressed: () {},
-                child: Text(
-                  'Tambah Biaya',
-                  style: TextStyle(color: Colors.white),
-                ),
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.redAccent,
-                  minimumSize: Size(double.infinity, 50),
-                ),
+              GestureDetector(
+                onTap: () {},
+                child: ft.Container(
+                    height: 50,
+                    decoration: BoxDecoration(
+                        color: ft.Color.fromARGB(255, 255, 174, 34)),
+                    child: Center(
+                      child: AutoSizeText(
+                        'Verifikasi Pembayaran',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    )),
               ),
             ],
           ),
@@ -241,6 +469,21 @@ class _CheckoutPageState extends State<CheckoutPage> {
               style: isTotal
                   ? TextStyle(fontWeight: FontWeight.bold, color: Colors.green)
                   : null),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTotalPayment(String label, String value, Color z,
+      {bool isTotal = false}) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 4),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(label,
+              style: isTotal ? TextStyle(fontWeight: FontWeight.bold) : null),
+          Text(value, style: TextStyle(fontWeight: FontWeight.bold, color: z)),
         ],
       ),
     );
@@ -282,7 +525,7 @@ class ListPaketCard extends StatelessWidget {
                 children: [
                   Text(nama, style: TextStyle(fontWeight: FontWeight.bold)),
                   Gap(8),
-                  Text(price, style: TextStyle(color: Colors.green)),
+                  Text(toIDRCurrency(price), style: TextStyle(color: Colors.green)),
                 ],
               ),
             ),

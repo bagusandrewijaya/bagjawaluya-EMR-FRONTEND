@@ -110,7 +110,7 @@ class AppNavigation {
                     },
                   ),
 
- GoRoute(
+                           GoRoute(
                     path: "checkout/:idtagihan",
                     name: "checkout",
                     pageBuilder: (context, state) {

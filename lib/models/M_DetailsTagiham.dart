@@ -1,26 +1,31 @@
 class ModelsDetailsTagihan {
+  String? total;
+  String? totalDibayarkan;
+  String? totalBelumDibayarkan;
   String? no;
   String? idTagihan;
   String? noRMFK;
   String? tagihanBulanan;
-  Null? tagihanObat;
+  String? jumlahHari;
+  String? tagihanObat;
   String? tagihanDiluarLayanan;
-  Null? typePayment;
+  String? typePayment;
   String? statusPaid;
   String? batasBayar;
-  Null? approvedBy;
+  String? approvedBy;
   String? createdAt;
   String? updateAt;
   String? flaggingType;
-  String? noRM;
-  String? tglMasuk;
-  String? total;
 
   ModelsDetailsTagihan(
-      {this.no,
+      {this.total,
+      this.totalDibayarkan,
+      this.totalBelumDibayarkan,
+      this.no,
       this.idTagihan,
       this.noRMFK,
       this.tagihanBulanan,
+      this.jumlahHari,
       this.tagihanObat,
       this.tagihanDiluarLayanan,
       this.typePayment,
@@ -29,16 +34,17 @@ class ModelsDetailsTagihan {
       this.approvedBy,
       this.createdAt,
       this.updateAt,
-      this.flaggingType,
-      this.noRM,
-      this.tglMasuk,
-      this.total});
+      this.flaggingType});
 
   ModelsDetailsTagihan.fromJson(Map<String, dynamic> json) {
+    total = json['total'];
+    totalDibayarkan = json['totalDibayarkan'];
+    totalBelumDibayarkan = json['totalBelumDibayarkan'];
     no = json['no'];
     idTagihan = json['idTagihan'];
     noRMFK = json['NoRMFK'];
     tagihanBulanan = json['tagihanBulanan'];
+    jumlahHari = json['jumlah_hari'];
     tagihanObat = json['tagihanObat'];
     tagihanDiluarLayanan = json['tagihanDiluarLayanan'];
     typePayment = json['type_payment'];
@@ -48,17 +54,18 @@ class ModelsDetailsTagihan {
     createdAt = json['CreatedAt'];
     updateAt = json['UpdateAt'];
     flaggingType = json['flagging_type'];
-    noRM = json['NoRM'];
-    tglMasuk = json['tgl_masuk'];
-    total = json['total'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['total'] = this.total;
+    data['totalDibayarkan'] = this.totalDibayarkan;
+    data['totalBelumDibayarkan'] = this.totalBelumDibayarkan;
     data['no'] = this.no;
     data['idTagihan'] = this.idTagihan;
     data['NoRMFK'] = this.noRMFK;
     data['tagihanBulanan'] = this.tagihanBulanan;
+    data['jumlah_hari'] = this.jumlahHari;
     data['tagihanObat'] = this.tagihanObat;
     data['tagihanDiluarLayanan'] = this.tagihanDiluarLayanan;
     data['type_payment'] = this.typePayment;
@@ -68,9 +75,6 @@ class ModelsDetailsTagihan {
     data['CreatedAt'] = this.createdAt;
     data['UpdateAt'] = this.updateAt;
     data['flagging_type'] = this.flaggingType;
-    data['NoRM'] = this.noRM;
-    data['tgl_masuk'] = this.tglMasuk;
-    data['total'] = this.total;
     return data;
   }
 }

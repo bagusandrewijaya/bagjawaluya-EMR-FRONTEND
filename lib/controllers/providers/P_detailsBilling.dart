@@ -16,6 +16,8 @@ class ProvidersDetailsBilling extends ChangeNotifier {
   List<ModelsDetailsTagihan> get data => _data;
   List<ModelTagihanDiluar> get tagihan => _tagihan;
   String idtagihan = '';
+  TextEditingController layanan = TextEditingController();
+  TextEditingController harga = TextEditingController();
   ProvidersDetailsBilling(idtagihanz) {
     FetchData(idtagihanz);
     idtagihan = idtagihanz;
@@ -25,9 +27,9 @@ class ProvidersDetailsBilling extends ChangeNotifier {
 
   FetchData(idTagihanz) async {
     _data = await _service.FetchBilling(idTagihanz);
-       notifyListeners();
-    _patients = await ApiPatients.FetchDataDetails(_data[0].noRM!);
-       notifyListeners();
+    notifyListeners();
+    _patients = await ApiPatients.FetchDataDetails(_data[0].noRMFK!);
+    notifyListeners();
     _tagihan = await _service.FetchBillingDiluarLayanan(idTagihanz);
     notifyListeners();
   }
@@ -39,5 +41,17 @@ class ProvidersDetailsBilling extends ChangeNotifier {
       FetchData(idtagihan);
       notifyListeners();
     }
+
+ 
   }
+
+     ADDpaketLayanan(idKey,context) async {
+         int a = await _service.ADDPaketLayanan(
+          amount: harga.text.replaceAll('RP. ', '').replaceAll('.', ''), idlayanan: idKey, namaLayanan: layanan.text, context: context);
+      if (a == 201) {
+        FetchData(idtagihan);
+        notifyListeners();
+        Navigator.pop(context);
+      }
+    }
 }

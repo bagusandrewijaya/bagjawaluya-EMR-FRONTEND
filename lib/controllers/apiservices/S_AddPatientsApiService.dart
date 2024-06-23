@@ -142,4 +142,9 @@ Future<void> putPatients({
   }
 }
 
+void PostBayar(){
+
+  
+}
+
 }

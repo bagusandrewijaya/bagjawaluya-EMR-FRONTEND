@@ -37,6 +37,7 @@ static String GetListCard = '${baseUrl}GetListCard';
 static String DetailsBilling = '${baseUrl}DetailsBilling';
 static String DetailsPaketLayananDiluar = '${baseUrl}DetailsPaketLayananDiluar';
 static String DeletePaketDiluarLayanan = '${baseUrl}DeletePaketDiluarLayanan';
-
+static String CreateManualBilling = '${baseUrl}CreateManualBilling';
+static String CreatePaketLayanan = '${baseUrl}CreatePaketLayanan';
    
 }

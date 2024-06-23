@@ -1,11 +1,13 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:sibagjaapps/models/M_DetailsTagiham.dart';
 import 'package:sibagjaapps/models/M_ModelTagihanDiluar.dart';
 import 'package:sibagjaapps/utils/Api_Services.dart';
 import 'package:sibagjaapps/utils/classLogerInit.dart';
 import 'package:sibagjaapps/utils/encryption/decryptions.dart';
+import 'package:toastification/toastification.dart';
 
 class APIDetailsBilling {
   Future<List<ModelsDetailsTagihan>> FetchBilling(idTagihan) async{
@@ -46,15 +48,34 @@ class APIDetailsBilling {
   
   }
 
+Future<int> ADDPaketLayanan({
+  required String idlayanan,
+  required String amount,
+  required String namaLayanan,
+  required BuildContext context
+}) async {
+  final response = await http.post(Uri.parse(API.CreatePaketLayanan), headers: API.credentialsMap, body: {
+    "idTagihanFK" : idlayanan,
+    "harga" : amount,
+    "namaTagihan" : namaLayanan
+   });
+   toastification.show(
+          type: ToastificationType.success,
+          style: ToastificationStyle.flat,
+          context: context,
+          title: Text('Berhasil'),
+          description: Text("paket disimpan"),
+          autoCloseDuration: const Duration(seconds: 5),
+        );
+     return response.statusCode;
 
-
+} 
   Future<int> DeletePaketLayanan(idlayanan) async{
    final response = await http.post(Uri.parse(API.DeletePaketDiluarLayanan), headers: API.credentialsMap,body: {
     "idKEY" : idlayanan
    });
 
-print(
-jsonDecode(response.body));
+
      return response.statusCode;
   
   }
