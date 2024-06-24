@@ -62,7 +62,7 @@ class WidgetTagihanObat extends StatelessWidget {
                                                           .width *
                                                       0.3,
                                                           child: TextField(
-                                                            controller: p.layanan,
+                                                            controller: p.namaobat,
                                                             keyboardType:
                                                                 TextInputType.text,
                                                             onChanged: (value) {},
@@ -98,7 +98,7 @@ class WidgetTagihanObat extends StatelessWidget {
                                                           .width *
                                                       0.3,
                                                           child: TextField(
-                                                            controller: p.harga,
+                                                            controller: p.hargaobat,
                                                             keyboardType:
                                                                 TextInputType.number,
                                                             inputFormatters: [
@@ -140,7 +140,7 @@ class WidgetTagihanObat extends StatelessWidget {
                                                         Align(alignment: Alignment.bottomRight,child: 
                                GestureDetector(
                               onTap: () {
-                                p.ADDpaketLayanan(idTagihan,context);
+                                p.ADDPembiayaanObat(idTagihan,context);
                               },
                               child: Container(
                                 width: 250,
@@ -161,7 +161,7 @@ class WidgetTagihanObat extends StatelessWidget {
                                             },
                                             child: Container(
                                               decoration:
-                                                  BoxDecoration(color: Colors.red,borderRadius: BorderRadius.circular(8)),
+                                                 BoxDecoration(color:Color(0xff16181E),),
                                               padding: EdgeInsets.all(8),
                                               child: Text("Tambah Biaya Obat",style: TextStyle(
                                                 color: Colors.white
@@ -179,10 +179,10 @@ class WidgetTagihanObat extends StatelessWidget {
                         
                                       Expanded(
                                         child: ListView(
-                                                children: p.tagihan
+                                                children: p.tagihanObat
                                                     .map(
                                                       (item) => ListPaketCard(
-                                                        nama: item.namaTagihan.toString(),
+                                                        nama: item.namaObat.toString(),
                                                         price: item.harga.toString(),
                                                         delete: () {
                                                        showDialog<String>(
@@ -196,7 +196,7 @@ class WidgetTagihanObat extends StatelessWidget {
                                 ft.Button(
                                   child: const Text('Hapus'),
                                   onPressed: () {
-                                     p.DeleteLayanan(item.idKEY);
+                                     p.Deleteobat(item.idKEY);
                                     Navigator.pop(context, 'User deleted file');
                                     // Delete file here
                                   },

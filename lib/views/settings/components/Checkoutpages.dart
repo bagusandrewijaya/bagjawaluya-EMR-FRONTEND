@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 import 'package:sibagjaapps/controllers/providers/P_detailsBilling.dart';
+import 'package:sibagjaapps/utils/downloaders/Url_Launcher.dart';
 import 'package:sibagjaapps/utils/idCurrencyFormater/currencyIdr.dart';
 import 'package:sibagjaapps/views/rekam_medis/components/parts/detailsMenu/cardProfile.dart';
 
@@ -215,14 +216,17 @@ class _CheckoutPageState extends State<CheckoutPage> {
               ),
               SizedBox(height: 16),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+
+                  bukaBrowser('https://api.vpscloudtrx.online/Cetakinv');
+                },
                 child: ft.Container(
                     height: 50,
                     decoration: BoxDecoration(
                         color: ft.Color.fromARGB(255, 13, 198, 69)),
                     child: Center(
                       child: AutoSizeText(
-                        'Verifikasi Pembayaran',
+                        'Cetak Pembayaran',
                         style: TextStyle(color: Colors.white),
                       ),
                     )),

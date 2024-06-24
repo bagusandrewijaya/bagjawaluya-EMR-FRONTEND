@@ -161,7 +161,7 @@ class WidgetPelayananDiluar extends StatelessWidget {
                                             },
                                             child: Container(
                                               decoration:
-                                                  BoxDecoration(color: Colors.red,borderRadius: BorderRadius.circular(8)),
+                                                  BoxDecoration(color:Color(0xff16181E),),
                                               padding: EdgeInsets.all(8),
                                               child: Text("Tambah Layanan Lain",style: TextStyle(
                                                 color: Colors.white

@@ -3,6 +3,7 @@ import 'package:sibagjaapps/controllers/apiservices/S_DetailsBilling.dart';
 import 'package:sibagjaapps/controllers/apiservices/S_DetailsPatients.dart';
 import 'package:sibagjaapps/models/M_DetailsTagiham.dart';
 import 'package:sibagjaapps/models/M_ModelTagihanDiluar.dart';
+import 'package:sibagjaapps/models/M_billingListObat.dart';
 import 'package:sibagjaapps/models/M_detailsPatients.dart';
 import 'package:toastification/toastification.dart';
 
@@ -12,13 +13,16 @@ class ProvidersDetailsBilling extends ChangeNotifier {
   List<ModelsDetailsTagihan> _data = [];
   List<DetailsPatients> _patients = [];
   List<ModelTagihanDiluar> _tagihan = [];
-
+List<ModelBillingObat> _tagihanObat = [];
   List<DetailsPatients> get patients => _patients;
   List<ModelsDetailsTagihan> get data => _data;
   List<ModelTagihanDiluar> get tagihan => _tagihan;
+    List<ModelBillingObat> get tagihanObat => _tagihanObat;
   String idtagihan = '';
   TextEditingController layanan = TextEditingController();
   TextEditingController harga = TextEditingController();
+    TextEditingController namaobat = TextEditingController();
+  TextEditingController hargaobat = TextEditingController();
   ProvidersDetailsBilling(idtagihanz) {
     FetchData(idtagihanz);
     idtagihan = idtagihanz;
@@ -33,10 +37,23 @@ class ProvidersDetailsBilling extends ChangeNotifier {
     notifyListeners();
     _tagihan = await _service.FetchBillingDiluarLayanan(idTagihanz);
     notifyListeners();
+    _tagihanObat = await _service.FetchBillingObat(idTagihanz);
+    notifyListeners();
   }
 
   DeleteLayanan(idKey) async {
     int a = await _service.DeletePaketLayanan(idKey);
+
+    if (a == 201) {
+      FetchData(idtagihan);
+      notifyListeners();
+    }
+
+ 
+  }
+
+    Deleteobat(idKey) async {
+    int a = await _service.DeleteObat(idKey);
 
     if (a == 201) {
       FetchData(idtagihan);
@@ -66,4 +83,29 @@ class ProvidersDetailsBilling extends ChangeNotifier {
         Navigator.pop(context);
       }
     }
+
+
+     ADDPembiayaanObat(idKey,context) async {
+      print( idKey);
+         int a = await _service.ADDPembiayaanObat(
+          amount: hargaobat.text.replaceAll('RP. ', '').replaceAll('.', ''), idlayanan: idKey, namaLayanan: namaobat.text, context: context);
+      if (a == 201) {
+      hargaobat.clear();
+      namaobat.clear();
+        FetchData(idtagihan);
+        notifyListeners();
+           toastification.show(
+          type: ToastificationType.success,
+          style: ToastificationStyle.flat,
+          context: context,
+          title: Text('Berhasil'),
+          description: Text("paket disimpan"),
+          autoCloseDuration: const Duration(seconds: 5),
+        );
+        Navigator.pop(context);
+      }
+    }
+
+
+    
 }

@@ -31,13 +31,17 @@ class API {
   static String UpdatePsikiatri = '${baseUrl}UpdatePsikiatri';
   static String UpdateCatatanPasien = '${baseUrl}UpdateCatatanPasien';
   static String CetakInfo = '${baseUrl}CetakInfo?norekam=';
-static String UpdatePatient = '${baseUrl}UpdatePatient';
-static String BillingGet = '${baseUrl}BillingGet';
-static String GetListCard = '${baseUrl}GetListCard';
-static String DetailsBilling = '${baseUrl}DetailsBilling';
-static String DetailsPaketLayananDiluar = '${baseUrl}DetailsPaketLayananDiluar';
-static String DeletePaketDiluarLayanan = '${baseUrl}DeletePaketDiluarLayanan';
-static String CreateManualBilling = '${baseUrl}CreateManualBilling';
-static String CreatePaketLayanan = '${baseUrl}CreatePaketLayanan';
-   
+  static String UpdatePatient = '${baseUrl}UpdatePatient';
+  static String BillingGet = '${baseUrl}BillingGet';
+  static String GetListCard = '${baseUrl}GetListCard';
+  static String DetailsBilling = '${baseUrl}DetailsBilling';
+  static String DetailsPaketLayananDiluar = '${baseUrl}DetailsPaketLayananDiluar';
+  static String DeletePaketDiluarLayanan = '${baseUrl}DeletePaketDiluarLayanan';
+  static String CreateManualBilling = '${baseUrl}CreateManualBilling';
+  static String CreatePaketLayanan = '${baseUrl}CreatePaketLayanan';
+  static String CreatePembiayaanObat = '${baseUrl}CreatePembiayaanObat';
+  static String FetchBillingObat = '${baseUrl}FetchBillingObat';
+  static String DeletePembiayaanObat = '${baseUrl}DeletePembiayaanObat';
+
+  
 }
