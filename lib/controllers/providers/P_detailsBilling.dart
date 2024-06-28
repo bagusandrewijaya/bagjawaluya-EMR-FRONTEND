@@ -3,6 +3,7 @@ import 'package:sibagjaapps/controllers/apiservices/S_DetailsBilling.dart';
 import 'package:sibagjaapps/controllers/apiservices/S_DetailsPatients.dart';
 import 'package:sibagjaapps/models/M_DetailsTagiham.dart';
 import 'package:sibagjaapps/models/M_ModelTagihanDiluar.dart';
+import 'package:sibagjaapps/models/M_Payments.dart';
 import 'package:sibagjaapps/models/M_billingListObat.dart';
 import 'package:sibagjaapps/models/M_detailsPatients.dart';
 import 'package:toastification/toastification.dart';
@@ -14,6 +15,8 @@ class ProvidersDetailsBilling extends ChangeNotifier {
   List<DetailsPatients> _patients = [];
   List<ModelTagihanDiluar> _tagihan = [];
 List<ModelBillingObat> _tagihanObat = [];
+List<M_PaymentsBilling> _payments = [];
+List<M_PaymentsBilling> get payment => _payments;
   List<DetailsPatients> get patients => _patients;
   List<ModelsDetailsTagihan> get data => _data;
   List<ModelTagihanDiluar> get tagihan => _tagihan;
@@ -24,12 +27,17 @@ List<ModelBillingObat> _tagihanObat = [];
     TextEditingController namaobat = TextEditingController();
   TextEditingController hargaobat = TextEditingController();
   ProvidersDetailsBilling(idtagihanz) {
-    FetchData(idtagihanz);
     idtagihan = idtagihanz;
     FetchData(idtagihan);
+    FetchPayment();
     notifyListeners();
   }
+FetchPayment()async{
 
+  _payments = await _service.FetchPayments(idBilling: idtagihan);
+  print(_payments);
+  notifyListeners();
+}
   FetchData(idTagihanz) async {
     _data = await _service.FetchBilling(idTagihanz);
     notifyListeners();
@@ -47,6 +55,7 @@ List<ModelBillingObat> _tagihanObat = [];
     if (a == 201) {
       FetchData(idtagihan);
       notifyListeners();
+      FetchPayment();
     }
 
  
@@ -58,6 +67,7 @@ List<ModelBillingObat> _tagihanObat = [];
     if (a == 201) {
       FetchData(idtagihan);
       notifyListeners();
+      FetchPayment();
     }
 
  
@@ -71,6 +81,7 @@ List<ModelBillingObat> _tagihanObat = [];
       harga.clear();
       layanan.clear();
         FetchData(idtagihan);
+        FetchPayment();
         notifyListeners();
            toastification.show(
           type: ToastificationType.success,
@@ -93,6 +104,7 @@ List<ModelBillingObat> _tagihanObat = [];
       hargaobat.clear();
       namaobat.clear();
         FetchData(idtagihan);
+        FetchPayment();
         notifyListeners();
            toastification.show(
           type: ToastificationType.success,

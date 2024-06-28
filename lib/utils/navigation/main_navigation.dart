@@ -9,7 +9,7 @@ import 'package:sibagjaapps/views/rekam_medis/components/parts/detailsMenu/FormC
 import 'package:sibagjaapps/views/rekam_medis/components/parts/detailsMenu/FormPKP/Formspengkajian.dart';
 
 import 'package:sibagjaapps/views/rekam_medis/mainRM.dart';
-import 'package:sibagjaapps/views/settings/components/Checkoutpages.dart';
+import 'package:sibagjaapps/views/settings/components/billingPages.dart';
 import 'package:sibagjaapps/views/settings/settings.dart';
 import 'package:sibagjaapps/views/settings/keuanganViews.dart';
 import 'package:sibagjaapps/views/splashscreens/splashscreens.dart';

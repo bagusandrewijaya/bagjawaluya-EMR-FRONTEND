@@ -88,11 +88,48 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                 Text('Riwayat Uang Masuk Pada Tagihan ini ',
                                     style:
                                         TextStyle(fontWeight: FontWeight.bold)),
-                                Text('${p.tagihan.length} items'),
+                                Text('${p.payment.length} Riwayat'),
                               ],
                             ),
                             SizedBox(height: 16),
-                            
+                             Expanded(
+                                        child: ListView(
+                                                children: p.payment
+                                                    .map(
+                                                      (item) => ListPayment(
+                                                        nama: "${item.deskripsi.toString()} [${item.createat.toString().substring(0,10)}]",
+                                                        price: item.amount.toString(),
+                                                        delete: () {
+                                                       showDialog<String>(
+                            context: context,
+                            builder: (context) => ft.ContentDialog(
+                              title: const ft.Text('Hapus Item?'),
+                              content: const Text(
+                                'Jika Kamu Menghapus item ini maka tidak dapat di pulihkan',
+                              ),
+                              actions: [
+                                ft.Button(
+                                  child: const Text('Hapus'),
+                                  onPressed: () {
+                                    // p.Deleteobat(item.idKEY);
+                                    Navigator.pop(context, 'User deleted file');
+                                    // Delete file here
+                                  },
+                                ),
+                                ft.FilledButton(
+                                  child: const Text('Batal'),
+                                  onPressed: () => Navigator.pop(context, 'User canceled dialog'),
+                                ),
+                              ],
+                            ),
+                          );
+                                                            
+                                                        },
+                                                      ),
+                                                    )
+                                                    .toList(),
+                                              ),
+                                      )
                           ],
                         ),
                       ),
@@ -357,3 +394,61 @@ class ListPaketCard extends StatelessWidget {
 
 
 
+
+
+
+class ListPayment extends StatelessWidget {
+  String nama;
+  String price;
+  Function delete;
+  ListPayment({
+    Key? key,
+    required this.nama,
+    required this.price,
+    required this.delete,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              width: 60,
+              height: 60,
+              color: Colors.grey[300],
+              child: Icon(
+                Icons.money_off_csred,
+                color: Colors.grey,
+              ),
+              // You can add an image here
+            ),
+            SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(nama, style: TextStyle(fontWeight: FontWeight.bold)),
+                  Gap(8),
+                  Text(toIDRCurrency(price), style: TextStyle(color: Colors.green)),
+                ],
+              ),
+            ),
+            Column(
+              children: [
+                IconButton(
+                    icon: Icon(Icons.close),
+                    onPressed: () {
+                      delete();
+                    }),
+              ],
+            ),
+          ],
+        ),
+        Divider(),
+      ],
+    );
+  }
+}

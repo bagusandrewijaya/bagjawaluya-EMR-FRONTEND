@@ -5,7 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:provider/provider.dart';
 import 'package:sibagjaapps/controllers/providers/P_CreateManualBilling.dart';
-import 'package:sibagjaapps/views/settings/components/Checkoutpages.dart';
+import 'package:sibagjaapps/views/settings/components/billingPages.dart';
 
 import '../../../utils/idCurrencyFormater/currencyIdr.dart';
 

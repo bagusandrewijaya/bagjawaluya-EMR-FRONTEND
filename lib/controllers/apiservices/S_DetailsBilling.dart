@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:sibagjaapps/models/M_DetailsTagiham.dart';
 import 'package:sibagjaapps/models/M_ModelTagihanDiluar.dart';
+import 'package:sibagjaapps/models/M_Payments.dart';
 import 'package:sibagjaapps/models/M_billingListObat.dart';
 import 'package:sibagjaapps/utils/Api_Services.dart';
 import 'package:sibagjaapps/utils/classLogerInit.dart';
@@ -18,8 +19,7 @@ class APIDetailsBilling {
 
     if (response.statusCode == 200) {
       var dataOpen = decrypt(jsonDecode(response.body)['response']);
-      LOG.logger.t(dataOpen);
-      // Ensure the decrypted data is parsed as a List
+
       List<dynamic> data = jsonDecode(dataOpen);
       
       List<ModelsDetailsTagihan> Users = data.map((json) => ModelsDetailsTagihan.fromJson(json)).toList();
@@ -30,6 +30,26 @@ class APIDetailsBilling {
   
   }
 
+
+  Future<List<M_PaymentsBilling>> FetchPayments({ required String idBilling}) async{
+  final response = await http.post(Uri.parse(API.FetchPaymentIdBilling), headers: API.credentialsMap,body: {
+    "idBilling" : idBilling
+   });
+
+    if (response.statusCode == 200) {
+      var dataOpen = decrypt(jsonDecode(response.body)['response']);
+      LOG.logger.t(dataOpen);
+      // Ensure the decrypted data is parsed as a List
+      List<dynamic> data = jsonDecode(dataOpen);
+      
+      List<M_PaymentsBilling> payments = data.map((json) => M_PaymentsBilling.fromJson(json)).toList();
+      return payments;
+    } else {
+      return [];
+    }
+    
+  }
+
   Future<List<ModelTagihanDiluar>> FetchBillingDiluarLayanan(idTagihan) async{
    final response = await http.post(Uri.parse(API.DetailsPaketLayananDiluar), headers: API.credentialsMap,body: {
     "idTagihan" : idTagihan
@@ -37,8 +57,6 @@ class APIDetailsBilling {
 
     if (response.statusCode == 200) {
       var dataOpen = decrypt(jsonDecode(response.body)['response']);
-      LOG.logger.t(dataOpen);
-      // Ensure the decrypted data is parsed as a List
       List<dynamic> data = jsonDecode(dataOpen);
       
       List<ModelTagihanDiluar> Users = data.map((json) => ModelTagihanDiluar.fromJson(json)).toList();
@@ -56,8 +74,6 @@ class APIDetailsBilling {
 
     if (response.statusCode == 200) {
       var dataOpen = decrypt(jsonDecode(response.body)['response']);
-      LOG.logger.t(dataOpen);
-      // Ensure the decrypted data is parsed as a List
       List<dynamic> data = jsonDecode(dataOpen);
       
       List<ModelBillingObat> Users = data.map((json) => ModelBillingObat.fromJson(json)).toList();
@@ -116,7 +132,6 @@ Future<int> ADDPembiayaanObat({
     "harga" : amount,
     "namaObat" : namaLayanan
    });
-LOG.logger.t(jsonDecode(response.body));
      return response.statusCode;
 
 } 

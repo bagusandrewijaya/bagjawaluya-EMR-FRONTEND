@@ -42,6 +42,6 @@ class API {
   static String CreatePembiayaanObat = '${baseUrl}CreatePembiayaanObat';
   static String FetchBillingObat = '${baseUrl}FetchBillingObat';
   static String DeletePembiayaanObat = '${baseUrl}DeletePembiayaanObat';
-
+  static String FetchPaymentIdBilling = '${baseUrl}FetchPaymentIdBilling';
   
 }
