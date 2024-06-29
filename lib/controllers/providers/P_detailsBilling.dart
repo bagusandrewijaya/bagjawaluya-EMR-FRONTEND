@@ -92,6 +92,19 @@ FetchPayment()async{
           autoCloseDuration: const Duration(seconds: 5),
         );
         Navigator.pop(context);
+      }else{
+        await displayInfoBar(context, builder: (context, close) {
+  return InfoBar(
+    title: const Text('Maaf :/'),
+    content: const Text(
+        'Sepertinya Ada masukan/input yang kurang lengkap'),
+    action: IconButton(
+      icon: const Icon(FluentIcons.clear),
+      onPressed: close,
+    ),
+    severity: InfoBarSeverity.warning,
+  );
+});
       }
     }
 
@@ -115,6 +128,19 @@ FetchPayment()async{
           autoCloseDuration: const Duration(seconds: 5),
         );
         Navigator.pop(context);
+      }else{
+           await displayInfoBar(context, builder: (context, close) {
+  return InfoBar(
+    title: const Text('Maaf :/'),
+    content: const Text(
+        'Sepertinya Ada masukan/input yang kurang lengkap'),
+    action: IconButton(
+      icon: const Icon(FluentIcons.clear),
+      onPressed: close,
+    ),
+    severity: InfoBarSeverity.warning,
+  );
+});
       }
     }
 

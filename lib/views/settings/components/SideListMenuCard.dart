@@ -108,7 +108,6 @@ class _SideMenuContainerState extends State<SideMenuContainer> {
               ),)),
             ),
           ),
-
             GestureDetector(
             onTap: () {
                 setState(() {

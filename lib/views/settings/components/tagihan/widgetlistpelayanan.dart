@@ -23,7 +23,7 @@ class WidgetPelayananDiluar extends StatelessWidget {
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text('List Biaya Di luar Pelayanan',
+                                      Text('Biaya luar Pelayanan',
                                           style:
                                               TextStyle(fontWeight: FontWeight.bold)),
                                       ft.Row(
@@ -163,7 +163,7 @@ class WidgetPelayananDiluar extends StatelessWidget {
                                               decoration:
                                                   BoxDecoration(color:Color(0xff16181E),),
                                               padding: EdgeInsets.all(8),
-                                              child: Text("Tambah Layanan Lain",style: TextStyle(
+                                              child: Text("Tambah Biaya",style: TextStyle(
                                                 color: Colors.white
                                               ),),
                                             ),

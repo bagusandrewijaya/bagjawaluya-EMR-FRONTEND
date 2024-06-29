@@ -1,6 +1,7 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:file_saver/file_saver.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:sibagjaapps/controllers/providers/P_dashboard.dart';
@@ -154,10 +155,20 @@ SizedBox(width: 8,),
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Row(
+               crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+                  Image.asset('assets/images/unbin_big.png',scale: 4,),
+                  Gap(8),
+                     Image.asset('assets/images/unbin_big.png',scale: 4,)
+            ],
+          ),
+            Gap(8),
           Text("INFORMASI",style: TextStyle(
             color: Colors.red
           ),),
-      
+    
           Text("Untuk mendukung pengelolaan data medis secara efisien dan terpadu."),
           Text("Dukungan aplikasi Chrome tersedia untuk Windows 10 ke atas."),
           Text("Pastikan Anda menginstal versi terbaru dari Chrome."),

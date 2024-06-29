@@ -55,7 +55,7 @@ class _CardTopState extends State<CardTop> {
         child: widget.data.length > 0 ? Row(
           children: [
             Expanded(
-              flex: 2,
+                flex: 2,
               child: Container(
                 color: Colors.white,
                 child: Column(
@@ -248,13 +248,9 @@ class _CardTopState extends State<CardTop> {
                       width: double.infinity,
                       color: const Color.fromARGB(195, 158, 158, 158),
                     ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: Row(
+                    Row(
                           children: [
-                            Expanded(
-                              child: Column(
+                           Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
@@ -308,7 +304,6 @@ class _CardTopState extends State<CardTop> {
                                   ),
                                 ],
                               ),
-                            ),
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -369,8 +364,7 @@ class _CardTopState extends State<CardTop> {
                               ),
                             )
                           ],
-                        ),
-                      )
+                        
                     )
                   ],
                 ),
