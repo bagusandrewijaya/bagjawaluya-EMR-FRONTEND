@@ -43,8 +43,8 @@ String getDateRangeFromIndex(int index) {
       int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
+  
+    return Container(
         color: Colors.transparent,
         child: SingleChildScrollView(
           child: Column(
@@ -124,13 +124,14 @@ String getDateRangeFromIndex(int index) {
                 ),
               ),
               SizedBox(
-                height: 600,
+                height: MediaQuery.of(context).size.height ,
                 child: Container(
                     color: Colors.white,
                     child: PaginatedDataTable2(
                       showCheckboxColumn: false,
                       horizontalMargin: 20,
                       checkboxHorizontalMargin: 12,
+                      rowsPerPage: 50,
                       wrapInCard: false,
                       renderEmptyRowsInTheEnd: true,
                       headingRowColor: MaterialStateColor.resolveWith(
@@ -149,8 +150,7 @@ String getDateRangeFromIndex(int index) {
             ],
           ),
         ),
-      ),
-    );
+      );
   }
 
  Widget datePickerBuilder(

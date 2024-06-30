@@ -44,6 +44,7 @@ class API {
   static String DeletePembiayaanObat = '${baseUrl}DeletePembiayaanObat';
   static String FetchPaymentIdBilling = '${baseUrl}FetchPaymentIdBilling';
   static String AddPaymentOnBilling = '${baseUrl}AddPaymentOnBilling';
+  static String BillingReport = '${baseUrl}BillingReport';
 
   
   static String Cetakinv = '${baseUrl}Cetakinv';

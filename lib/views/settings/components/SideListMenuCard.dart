@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:sibagjaapps/models/M_ListButton.dart';
 import 'package:fluent_ui/fluent_ui.dart' as ft;
+
+import '../../../utils/idCurrencyFormater/currencyIdr.dart';
 class SideMenuContainer extends StatefulWidget {
   final List <ButtonListKeuangan>data2;
     void Function(int) tapindex;
@@ -33,6 +35,9 @@ class _SideMenuContainerState extends State<SideMenuContainer> {
                     setState(() {
                       _selectedIndex = index;
                            widget.tapindex(_selectedIndex);
+
+                          
+
                     });
                   },
                   child: Container(
@@ -51,8 +56,8 @@ class _SideMenuContainerState extends State<SideMenuContainer> {
                             fontWeight: FontWeight.bold,fontSize: 18
                           ),),
                           SizedBox(height: 8.0),
-                         if(i.title!.toLowerCase() != "sudah dibayar") Text(
-                            'Rp ${i.total == null ?   "0" : i.total}',
+                         if(i.title!.toLowerCase() != "rekap billing") Text(
+                            '${i.total == null ?   "0" : toIDRCurrency(i.total.toString())}',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 24.0,

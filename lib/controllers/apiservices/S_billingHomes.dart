@@ -21,10 +21,11 @@ class ApiBillingHomes {
   
 }
 
- Future<List<MBillingList>> FetchDatarequest(String tanggalAwal,String TanggalAkhir) async{
+ Future<List<MBillingList>> FetchDatarequest(String tanggalAwal,String TanggalAkhir,status) async{
     final response = await http.post(Uri.parse(API.BillingGet), headers: API.credentialsMap,body: {
       "tglawal" : tanggalAwal,
-      "tglakhir" : TanggalAkhir
+      "tglakhir" : TanggalAkhir,
+      "statusPaid" : status
     });
  var dataOpen = decrypt(jsonDecode(response.body)['response']);
 

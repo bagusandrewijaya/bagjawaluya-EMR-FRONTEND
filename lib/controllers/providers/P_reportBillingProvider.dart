@@ -1,48 +1,28 @@
-import 'package:fluent_ui/fluent_ui.dart';
-import 'package:sibagjaapps/models/M_ListButton.dart';
+import 'package:flutter/foundation.dart';
+import 'package:sibagjaapps/controllers/apiservices/S_ReportBilling.dart';
+import 'package:sibagjaapps/models/M_bilingReport.dart';
 import 'package:intl/intl.dart';
-
-import '../../models/M_billingList.dart';
-import '../apiservices/S_billingHomes.dart';
-
-class ProviderBilling extends ChangeNotifier {
-  ApiBillingHomes _service = ApiBillingHomes();
-  List<ButtonListKeuangan> _data = [];
-  List<ButtonListKeuangan> get data => _data;
-  List<MBillingList> _billing = [];
- List<MBillingList> get billing =>_billing;
-    DateTime startDate = DateTime.now();
-    String tanggalAwal ='';
+class ProviderReportBilling extends ChangeNotifier {
+  ReportBillingService _service = ReportBillingService();
+  List<M_BillingReport> _billing = [];
+  List<M_BillingReport> get billing => _billing;
+  String tanggalAwal ='';
       String tanggalAkhir ='';
-  ProviderBilling() {
-    startDate = DateTime.now().subtract(Duration(days: 7));
-    DateTime now = DateTime.now();
-    tanggalAwal = "${startDate.toString().substring(0, 10)}";
-    tanggalAkhir = " ${now.toString().substring(0, 10)}";
-   
-    FetchData();
+      String Norekam = '';
+      String status= '';
+  ProviderReportBilling() {
+      FetchAllBilling();
   }
 
-
-  void FetchData() async {
-    _data = await _service.FetchDataButton();
-  changePages(0);
+  FetchAllBilling() async {
+    _billing = await _service.fetchReport(
+      tanggalAwal: tanggalAwal,
+      tanggalAkhir: tanggalAkhir,
+      status: status.toString(),
+      noRekam: Norekam
+    );
     notifyListeners();
   }
-
-
-changePages(pagesNumber)async{
-print("idnya $pagesNumber");
-
-  if (pagesNumber == 0) {
-     _billing = await _service.FetchDatarequest(tanggalAwal,tanggalAkhir,'0');
-  }else if(pagesNumber == 1){
-     _billing = await _service.FetchDatarequest(tanggalAwal,tanggalAkhir,'1');
-  }
-
-   notifyListeners();
-}
-
 
 void changeDatePicker(String value) {
   final DateFormat formatterYYYYMMDD = DateFormat('yyyy-MM-dd');
@@ -75,8 +55,28 @@ void changeDatePicker(String value) {
    tanggalAwal = formatterYYYYMMDD.format(startDate);
    tanggalAkhir = formatterYYYYMMDD.format(endDate);
   notifyListeners();
-  FetchData();
+  FetchAllBilling();
   print('Tanggal awal: $tanggalAwal');
   print('Tanggal akhir: $tanggalAkhir');
 }
+  
+  void clearButton() {
+    tanggalAwal = '';
+    tanggalAkhir = '';
+    Norekam = '';
+      FetchAllBilling();
+    notifyListeners();
+  }
+
+void setname(name){
+Norekam = name;
+notifyListeners();
+}
+void setype(name){
+status = name;
+print("statunys $status");
+notifyListeners();
+}
+
+
 }

@@ -9,7 +9,7 @@ class FindPatienProvider extends ChangeNotifier {
   List<ModelPasien> get finderName => _finderName;
   List<ModelPasien> get patient => _patient;
   String _name = '';
-
+ String Nameselected ='';
 void fetchByName(name) async{
 
 _name = name;
@@ -22,6 +22,12 @@ notifyListeners();
 
 }
 
+
+SETname(name) {
+
+  Nameselected  = name;
+  notifyListeners();
+}
 
 void selectedName(SelectedName) async{
  _patient = await _service.FetchData(SelectedName);

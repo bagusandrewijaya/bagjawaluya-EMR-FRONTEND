@@ -38,7 +38,7 @@ BuildContext context;
           padding: EdgeInsets.all(8),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            color:_data[index].statusPaid != "0" ? Colors.green: Colors.red )
+            color:_data[index].statusPaid == "1" ? Colors.green: Colors.red )
           
         ),
       )),

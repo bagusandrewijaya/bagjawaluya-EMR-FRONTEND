@@ -17,9 +17,10 @@ import 'package:sibagjaapps/views/settings/components/billingPages.dart';
 import 'package:sibagjaapps/views/settings/components/createpembayaran.dart';
 import 'package:sibagjaapps/views/settings/components/masterbiaya.dart';
 import 'package:go_router/go_router.dart' as ct ;
+import 'package:sibagjaapps/views/settings/components/tagihan/BillingReport.dart';
 import '../../models/M_ListButton.dart';
 import 'components/SideListMenuCard.dart';
-import 'components/tagihan/widgetbilinglist.dart';
+import 'components/tagihan/widgetbilinglistBelumBayar.dart';
 
 class KeuanganModules extends StatefulWidget {
   const KeuanganModules({super.key});
@@ -31,10 +32,10 @@ class _KeuanganModulesState extends State<KeuanganModules> {
 
 
   final List<String> titles = [
-    "Last 7 Days",
-    "Last Month",
-    "Last 3 Months",
-    "Last 12 Months"
+    "7 Hari Yang Lalu",
+    "1 Bulan Yang Lalu",
+    "3 Bulan Yang Lalu",
+    "12 Bulan Yang lalu"
   ];
 
 
@@ -54,6 +55,7 @@ int i = 0;
                  SizedBox(
               width: 280,
               child: SideMenuContainer(data2: p.data, tapindex: (int z) {
+                 p.changePages(z);
                 setState(() {
                   i = z;
                 });
@@ -110,10 +112,12 @@ int i = 0;
                             ],
                           ),
                          
-                          WidgetListBilling(
-                            data: p.billing, 
-                            titles: titles,
-                            p: p,
+                          Expanded(
+                            child: WidgetListBilling(
+                              data: p.billing, 
+                              titles: titles,
+                              p: p,
+                            ),
                           )
                         ],
                       ),
@@ -121,9 +125,14 @@ int i = 0;
                   ),
                 )
                 ]else if(i==1)...[
-            
+            Expanded(
+              child: Container(
+                padding: EdgeInsets.all(8),
+                child: InvoiceReportPage(titles: titles,)
+              ),
+            )
                 ]else if(i== 2)...[
-             CheckoutPageManual()
+             Expanded(child: CheckoutPageManual())
                 ]else if(i == 3)...[
               BillingInformationWidget(idTagihan: '',)
                 ]else if(i == 4)...[

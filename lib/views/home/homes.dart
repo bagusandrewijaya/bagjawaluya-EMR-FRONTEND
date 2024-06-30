@@ -159,9 +159,9 @@ SizedBox(width: 8,),
                crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
             children: [
-                  Image.asset('assets/images/unbin_big.png',scale: 4,),
+                  Image.asset('assets/images/unbin_big.png',scale: 6,),
                   Gap(8),
-                     Image.asset('assets/images/bagjawaluya.png',scale: 4,)
+                     Image.asset('assets/images/bagjawaluya.png',scale: 6,)
             ],
           ),
             Gap(8),

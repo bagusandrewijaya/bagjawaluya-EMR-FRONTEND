@@ -145,13 +145,13 @@ class APIPKP {
         "pernafasan": pernafasan,
         "pemeriksaan_lain": pemeriksaan_lain,
         "statusmental": statusmental,
-        "id_psikiatri": id_psikiatri,
+        "uuid": id_psikiatri,
         "pemeriksaantahaptiga" :pemeriksaantahaptiga,
         "gaf_skor" : gaf_skor
       },
     );
+  LOG.logger.t(jsonDecode(response.body));
 
-    print(jsonDecode(response.body));
     try {
    
       if (response.statusCode == 200) {
