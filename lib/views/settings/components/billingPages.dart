@@ -221,6 +221,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     crossAxisAlignment: ft.CrossAxisAlignment.end,
                     children: [
                       TextFormField(
+                        controller: p.flagging,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'No Transfer',
@@ -228,21 +229,35 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       ),
                       Gap(8),
                       TextFormField(
+                        controller: p.description,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: 'Nama Pengirim',
+                          labelText: 'Nama Atau Tanda Pengirim',
                         ),
                       ),
                       Gap(8),
                       TextFormField(
+                        controller: p.amountpay,
+                               keyboardType:
+                                                                TextInputType.number,
+                                                            inputFormatters: [
+                                                              CurrencyTextInputFormatter
+                                                                  .currency(
+                                                                locale: 'id',
+                                                                decimalDigits: 0,
+                                                                symbol: 'RP. ',
+                                                              ),
+                                                            ],
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: 'Jumlah',
+                          labelText: 'Jumlah Transfer',
                         ),
                       ),
                       SizedBox(height: 8),
                       GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            p.AddBillingOnpaymentP(context);
+                          },
                           child: Container(
                             width: 250,
                             height: 50,
@@ -425,10 +440,10 @@ class ListPayment extends StatelessWidget {
             Container(
               width: 60,
               height: 60,
-              color: Colors.grey[300],
+              color: Colors.green[300],
               child: Icon(
                 Icons.money_off_csred,
-                color: Colors.grey,
+                color: Colors.white,
               ),
               // You can add an image here
             ),

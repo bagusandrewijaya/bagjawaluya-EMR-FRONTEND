@@ -161,7 +161,7 @@ SizedBox(width: 8,),
             children: [
                   Image.asset('assets/images/unbin_big.png',scale: 4,),
                   Gap(8),
-                     Image.asset('assets/images/unbin_big.png',scale: 4,)
+                     Image.asset('assets/images/bagjawaluya.png',scale: 4,)
             ],
           ),
             Gap(8),

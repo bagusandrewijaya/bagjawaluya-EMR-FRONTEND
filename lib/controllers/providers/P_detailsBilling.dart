@@ -26,6 +26,11 @@ List<M_PaymentsBilling> get payment => _payments;
   TextEditingController harga = TextEditingController();
     TextEditingController namaobat = TextEditingController();
   TextEditingController hargaobat = TextEditingController();
+
+
+  TextEditingController flagging = TextEditingController();
+  TextEditingController amountpay = TextEditingController();
+  TextEditingController description = TextEditingController();
   ProvidersDetailsBilling(idtagihanz) {
     idtagihan = idtagihanz;
     FetchData(idtagihan);
@@ -144,6 +149,54 @@ FetchPayment()async{
       }
     }
 
+
+AddBillingOnpaymentP(context)async{
+int response = await _service.AddpaymentOnBilling(idlayanan: idtagihan, amount: amountpay.text.replaceAll('RP. ', '').replaceAll('.', ''), deskripsi: description.text, flagging: flagging.text, context: context);
+
+  if (response == 201) {
+      hargaobat.clear();
+      namaobat.clear();
+        FetchData(idtagihan);
+        FetchPayment();
+        notifyListeners();
+           toastification.show(
+          type: ToastificationType.success,
+          style: ToastificationStyle.flat,
+          context: context,
+          title: Text('Berhasil'),
+          description: Text("pembayaran disimpan"),
+          autoCloseDuration: const Duration(seconds: 5),
+        );
+      
+      }else if(response == 422){
+       await displayInfoBar(context, builder: (context, close) {
+  return InfoBar(
+    title: const Text('OOPS :/'),
+    content: const Text(
+        'Jumlah pembayaran melebihi total tagihan Dan Transaksi Dibatalkan'),
+    action: IconButton(
+      icon: const Icon(FluentIcons.clear),
+      onPressed: close,
+    ),
+    severity: InfoBarSeverity.warning,
+  );
+});
+
+      }else{
+           await displayInfoBar(context, builder: (context, close) {
+  return InfoBar(
+    title: const Text('Maaf :/'),
+    content: const Text(
+        'Sepertinya Ada masukan/input yang kurang lengkap'),
+    action: IconButton(
+      icon: const Icon(FluentIcons.clear),
+      onPressed: close,
+    ),
+    severity: InfoBarSeverity.warning,
+  );
+});
+      }
+}
 
     
 }
