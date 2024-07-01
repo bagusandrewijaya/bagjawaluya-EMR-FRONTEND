@@ -36,7 +36,7 @@ class APIDetailsBilling {
 
     if (response.statusCode == 200) {
       var dataOpen = decrypt(jsonDecode(response.body)['response']);
-      LOG.logger.t(dataOpen);
+
       // Ensure the decrypted data is parsed as a List
       List<dynamic> data = jsonDecode(dataOpen);
 
@@ -92,7 +92,7 @@ class APIDetailsBilling {
           "harga": amount,
           "namaTagihan": namaLayanan
         });
-    LOG.logger.t(jsonDecode(response.body));
+
     return response.statusCode;
   }
 
@@ -106,9 +106,27 @@ class APIDetailsBilling {
   Future<int> DeleteObat(idlayanan) async {
     final response = await http.post(Uri.parse(API.DeletePembiayaanObat),
         headers: API.credentialsMap, body: {"idKEY": idlayanan});
+    
+    return response.statusCode;
+  }
+ Future<int> DeletePayment({required String idpayment}) async {
+    final response = await http.post(Uri.parse(API.deletePayment),
+        headers: API.credentialsMap, body: {"idpayment": idpayment});
 
     return response.statusCode;
   }
+
+ Future<int> VerifikasiPembayaran({required String billing,required String status}) async {
+    final response = await http.post(Uri.parse(API.VerifikasiPembayaran),
+        headers: API.credentialsMap, body: {"idbilling": billing,"status" : status});
+    LOG.logger.t(jsonDecode(response.body));  
+    return response.statusCode;
+  }
+
+
+
+
+
 
   Future<int> ADDPembiayaanObat(
       {required String idlayanan,
@@ -139,7 +157,7 @@ class APIDetailsBilling {
           "amount": amount,
           'deskripsi': deskripsi
         });
-        LOG.logger.t(jsonDecode(response.body));
+
     return response.statusCode;
   }
 }

@@ -248,100 +248,46 @@ class _CardTopState extends State<CardTop> {
                       width: double.infinity,
                       color: const Color.fromARGB(195, 158, 158, 158),
                     ),
-                    Row(
-                          children: [
-                           Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                   Text("Informasi Pasien", style: TextStyle(
-                                                color: Colors.black, fontWeight: FontWeight.bold
-                                              ),),
-                                              Gap(8),
-                                  Row(
-                                         crossAxisAlignment: CrossAxisAlignment.start,
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                       Column(
-                                             crossAxisAlignment: CrossAxisAlignment.start,
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                         children: [
-                                           Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              mainAxisAlignment: MainAxisAlignment.start,
-                                              children: [
-                                                Text("Tanggal Lahir", style: TextStyle(
-                                                  color: Colors.grey
+                    Padding(
+                      padding: EdgeInsets.all(8),
+                      child: Row(
+                            children: [
+                             Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                     Text("Informasi Pasien", style: TextStyle(
+                                                  color: Colors.black, fontWeight: FontWeight.bold
                                                 ),),
-                                                Container(
-                                                
-                                                  child: AutoSizeText("${widget.data[0].tanggalLahir}", style: TextStyle(
-                                                    color: Colors.black, fontWeight: FontWeight.bold
-                                                  ),),
-                                                )
-                                              ],
-                                            ),
-                                        
-                                         ],
-                                       ),
-                                        Gap(21),
-                                        Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          children: [
-                                            Text("Alamat", style: TextStyle(
-                                              color: Colors.grey
-                                            ),),
-                                            Container(
-                                             width: 250,
-                                              child: AutoSizeText("${widget.data[0].alamat}", style: TextStyle(
-                                                color: Colors.black, fontWeight: FontWeight.bold
-                                              ),),
-                                            )
-                                          ],
-                                        )
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                   Text("Informasi Keluarga Pasien", style: TextStyle(
-                                                color: Colors.black, fontWeight: FontWeight.bold
-                                              ),),
-                                              Gap(8),
-                                  Row(
-                                         crossAxisAlignment: CrossAxisAlignment.start,
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                       Column(
-                                             crossAxisAlignment: CrossAxisAlignment.start,
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                         children: [
-                                         
+                                                Gap(8),
+                                    Row(
+                                           crossAxisAlignment: CrossAxisAlignment.start,
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                         Column(
+                                               crossAxisAlignment: CrossAxisAlignment.start,
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                           children: [
                                              Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          children: [
-                                            Text("Kontak", style: TextStyle(
-                                              color: Colors.grey
-                                            ),),
-                                            Container(
-                                            
-                                              child: AutoSizeText("${widget.data[0].kontak}", style: TextStyle(
-                                                color: Colors.black, fontWeight: FontWeight.bold
-                                              ),),
-                                            )
-                                          ],
-                                        ),
-                                         ],
-                                       ),
-                                        Gap(21),
-                                        Expanded(
-                                          child: Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                mainAxisAlignment: MainAxisAlignment.start,
+                                                children: [
+                                                  Text("Tanggal Lahir", style: TextStyle(
+                                                    color: Colors.grey
+                                                  ),),
+                                                  Container(
+                                                  
+                                                    child: AutoSizeText("${widget.data[0].tanggalLahir}", style: TextStyle(
+                                                      color: Colors.black, fontWeight: FontWeight.bold
+                                                    ),),
+                                                  )
+                                                ],
+                                              ),
+                                          
+                                           ],
+                                         ),
+                                          Gap(21),
+                                          Column(
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             mainAxisAlignment: MainAxisAlignment.start,
                                             children: [
@@ -349,22 +295,79 @@ class _CardTopState extends State<CardTop> {
                                                 color: Colors.grey
                                               ),),
                                               Container(
-                                                                                 
-                                                child: AutoSizeText("${widget.data[0].alamatKeluarga}", style: 
-                                                TextStyle(
-                                                  color: Colors.black,fontWeight: FontWeight.bold
+                                               width: 250,
+                                                child: AutoSizeText("${widget.data[0].alamat}", style: TextStyle(
+                                                  color: Colors.black, fontWeight: FontWeight.bold
+                                                ),),
+                                              )
+                                            ],
+                                          )
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                     Text("Informasi Keluarga Pasien", style: TextStyle(
+                                                  color: Colors.black, fontWeight: FontWeight.bold
+                                                ),),
+                                                Gap(8),
+                                    Row(
+                                           crossAxisAlignment: CrossAxisAlignment.start,
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                         Column(
+                                               crossAxisAlignment: CrossAxisAlignment.start,
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                           children: [
+                                           
+                                               Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            children: [
+                                              Text("Kontak", style: TextStyle(
+                                                color: Colors.grey
+                                              ),),
+                                              Container(
+                                              
+                                                child: AutoSizeText("${widget.data[0].kontak}", style: TextStyle(
+                                                  color: Colors.black, fontWeight: FontWeight.bold
                                                 ),),
                                               )
                                             ],
                                           ),
-                                        )
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
-                        
+                                           ],
+                                         ),
+                                          Gap(21),
+                                          Expanded(
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              children: [
+                                                Text("Alamat", style: TextStyle(
+                                                  color: Colors.grey
+                                                ),),
+                                                Container(
+                                                                                   
+                                                  child: AutoSizeText("${widget.data[0].alamatKeluarga}", style: 
+                                                  TextStyle(
+                                                    color: Colors.black,fontWeight: FontWeight.bold
+                                                  ),),
+                                                )
+                                              ],
+                                            ),
+                                          )
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          
+                      ),
                     )
                   ],
                 ),

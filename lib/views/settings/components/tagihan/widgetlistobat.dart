@@ -8,7 +8,8 @@ import 'package:sibagjaapps/views/settings/components/billingPages.dart';
 class WidgetTagihanObat extends StatelessWidget {
   ProvidersDetailsBilling p;
   String idTagihan;
-   WidgetTagihanObat({super.key,required this.p,required this.idTagihan});
+  String statusTag;
+   WidgetTagihanObat({super.key,required this.p,required this.idTagihan,required this.statusTag});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,7 @@ class WidgetTagihanObat extends StatelessWidget {
                                               TextStyle(fontWeight: FontWeight.bold)),
                                       ft.Row(
                                         children: [
-                                          GestureDetector(
+                                        if(statusTag == "0")    GestureDetector(
                                             onTap: () {
                                               showModalBottomSheet(
                                                 context: context,
@@ -185,7 +186,8 @@ class WidgetTagihanObat extends StatelessWidget {
                                                         nama: item.namaObat.toString(),
                                                         price: item.harga.toString(),
                                                         delete: () {
-                                                       showDialog<String>(
+                                                      if(statusTag == "0") {
+                                                        showDialog<String>(
                             context: context,
                             builder: (context) => ft.ContentDialog(
                               title: const ft.Text('Hapus Item?'),
@@ -196,8 +198,8 @@ class WidgetTagihanObat extends StatelessWidget {
                                 ft.Button(
                                   child: const Text('Hapus'),
                                   onPressed: () {
-                                     p.Deleteobat(item.idKEY);
-                                    Navigator.pop(context, 'User deleted file');
+                                     p.Deleteobat(item.idKEY,context);
+                                
                                     // Delete file here
                                   },
                                 ),
@@ -208,6 +210,7 @@ class WidgetTagihanObat extends StatelessWidget {
                               ],
                             ),
                           );
+                                                      }
                                                             
                                                         },
                                                       ),

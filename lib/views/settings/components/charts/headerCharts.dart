@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 import 'dart:ui' as ui;
 
 class PaymentReportChart extends StatelessWidget {
-  final List<PaymentData> data;
+  final List<M_ChartsBilling> data;
 
   PaymentReportChart({required this.data});
 
@@ -32,12 +32,12 @@ class PaymentReportChart extends StatelessWidget {
     );
   }
 
-  List<CartesianSeries<PaymentData, DateTime>> _getLineSeries() {
-    return <CartesianSeries<PaymentData, DateTime>>[
-      LineSeries<PaymentData, DateTime>(
+  List<CartesianSeries<M_ChartsBilling, DateTime>> _getLineSeries() {
+    return <CartesianSeries<M_ChartsBilling, DateTime>>[
+      LineSeries<M_ChartsBilling, DateTime>(
         dataSource: data,
-        xValueMapper: (PaymentData payment, _) => payment.yearmonthday,
-        yValueMapper: (PaymentData payment, _) => payment.amount,
+        xValueMapper: (M_ChartsBilling payment, _) => DateFormat("yyyy-MM-dd").parse(payment.yearmonthday!),
+        yValueMapper: (M_ChartsBilling payment, _) =>num.parse( payment.amount!),
         name: 'Uang Masuk',
         dataLabelSettings: DataLabelSettings(isVisible: true),
         markerSettings: MarkerSettings(isVisible: true),

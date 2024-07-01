@@ -85,7 +85,7 @@ class _SideMenuContainerState extends State<SideMenuContainer> {
               onTap: () {
                 
                 setState(() {
-               widget.tapindex(2);
+          widget.tapindex(3);
                 });
               },
               child: Container(
@@ -98,25 +98,11 @@ class _SideMenuContainerState extends State<SideMenuContainer> {
                         ),
             ),
             Gap(8),
-          GestureDetector(
-            onTap: () {
-                setState(() {
-              widget.tapindex(3);
-                });
-            },
-            child: Container(
-              color: Color(0xffCB3694),
-              padding: EdgeInsets.all(8),
-              margin: EdgeInsets.all(8),
-              child: Center(child: Text("Cari Tagihan Pasien",style: TextStyle(
-                color: Colors.white,fontWeight: FontWeight.bold
-              ),)),
-            ),
-          ),
+          
             GestureDetector(
             onTap: () {
                 setState(() {
-              widget.tapindex(4);
+              widget.tapindex(2);
                 });
             },
             child: Container(

@@ -7,6 +7,8 @@ import 'package:sibagjaapps/utils/Api_Services.dart';
 import 'package:sibagjaapps/utils/classLogerInit.dart';
 import 'package:sibagjaapps/utils/encryption/decryptions.dart';
 
+import '../../models/M_ChartsPendapatan.dart';
+
 class ReportBillingService {
   Future<List<M_BillingReport>> fetchReport({
     required String tanggalAwal,
@@ -31,4 +33,22 @@ class ReportBillingService {
     List<M_BillingReport> billingReport = data.map((json) => M_BillingReport.fromJson(json)).toList();
     return billingReport;
   }
+
+Future<List<M_ChartsBilling>> FetchBillingCharts() async {
+    var response = await http.post(
+      Uri.parse(API.ChartsAmount),
+      headers: API.credentialsMap,
+      body: {
+        "id": "tanggalAwal",
+  
+      },
+    );
+
+    var dataOpen = decrypt(jsonDecode(response.body)['response']);
+    LOG.logger.t(dataOpen);
+    List<dynamic> data = jsonDecode(dataOpen);
+    List<M_ChartsBilling> billingReport = data.map((json) => M_ChartsBilling.fromJson(json)).toList();
+    return billingReport;
+  }
+
 }

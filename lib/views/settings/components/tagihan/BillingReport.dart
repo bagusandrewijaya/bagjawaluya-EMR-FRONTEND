@@ -15,7 +15,7 @@ import 'package:sibagjaapps/models/M_bilingReport.dart';
 import 'package:sibagjaapps/utils/Api_Services.dart';
 import 'package:sibagjaapps/utils/idCurrencyFormater/currencyIdr.dart';
 import 'package:sibagjaapps/views/settings/components/charts/headerCharts.dart';
-
+import 'package:go_router/go_router.dart';
 import '../../../../models/M_PasienModels.dart';
 import '../../../../utils/downloaders/Url_Launcher.dart';
 
@@ -63,6 +63,7 @@ class _InvoiceReportPageState extends State<InvoiceReportPage> {
   };
 String? selectedType;
 String selectedname= '';
+      DateTime? selected;
   @override
   void initState() {
     selectedType = types.keys.first;
@@ -86,23 +87,7 @@ String selectedname= '';
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     PaymentReportChart(
-          data: [
-             PaymentData(DateTime(2022, 9, 1), 1100000),
-                PaymentData(DateTime(2022, 9, 20), 20000),
-                PaymentData(DateTime(2022, 10, 21), 349999),
-            PaymentData(DateTime(2023, 7, 1), 1000000),
-            PaymentData(DateTime(2023, 8, 1), 1200000),
-              PaymentData(DateTime(2023, 9, 21), 100000),
-                     PaymentData(DateTime(2023, 12, 21), 1300000),
-                     PaymentData(DateTime(2024, 6, 10), 1100000),
-                      PaymentData(DateTime(2024, 6, 20), 1300000),
-                          PaymentData(DateTime(2024, 6, 25), 450000),
-              PaymentData(DateTime(2024, 9, 1), 1100000),
-                    PaymentData(DateTime(2024, 9, 18), 1100000),
-              PaymentData(DateTime(2024, 12, 1), 1200000),
-    
-        
-          ],
+          data: p.paymentdata,
         ),
       
                   Container(
@@ -191,7 +176,7 @@ String selectedname= '';
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         Text(
-                          "Filter Laporan Billing",
+                          "Pencarian Dan Rekapan Billing",
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 18
@@ -236,7 +221,7 @@ String selectedname= '';
                                           p.setname(item.value!.noRMFK);
                                     setState(() {
 
-                                      selectedname = item.value!.namaPasien!;
+                                      selectedname = item.value!.namaPasien!  ;
                                     });
                                               },
                                       ),
@@ -261,7 +246,178 @@ String selectedname= '';
                         });
                     }),
                         SizedBox(height: 8),
-                      
+                       Align(
+                          alignment: Alignment.bottomRight,
+                          child: GestureDetector(
+                            onTap: () { 
+                              showModalBottomSheet(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return Container(
+                                    height: 200,
+                                    color: Colors.white,
+                                    child: Center(
+                                      child: Text(
+                                        "coming soon",
+                                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                            child: Container(
+                              width: double.infinity,
+                              height: 50,
+                              decoration: BoxDecoration(color: Color(0xff16181E)),
+                              child: Center(
+                                child: Text(
+                                  "LIHAT REKAPAN",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Gap(8),
+                          Align(
+                          alignment: Alignment.bottomRight,
+                          child: GestureDetector(
+                            onTap: () { 
+                              showModalBottomSheet(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return Container(
+                                    padding: EdgeInsets.all(8),
+                                    height: 200,
+                                    color: Colors.white,
+                                    child: ft.Column(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        ft.Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                     
+
+ft.Container(
+  decoration: BoxDecoration(
+    border: Border.all(width: 1,color: ft.Color.fromARGB(255, 46, 133, 255)),
+    borderRadius: BorderRadius.circular(4)
+  ),
+  child: ft.DatePicker(
+
+    selected: selected,
+    onChanged: (time) => setState(() => selected = time),
+  ),
+),
+                                             Text("data",),
+                                          ],
+                                        ),
+                                        Align(
+                          alignment: Alignment.bottomRight,
+                          child: GestureDetector(
+                            onTap: () {
+                        bukaBrowser(API.CetakLaporan);
+                           Navigator.pop(context);
+                             
+                            },
+                            child: Container(
+                              width: 250,
+                              height: 50,
+                              decoration: BoxDecoration(color: Color(0xff16181E)),
+                              child: Center(
+                                child: Text(
+                                  "LIHAT",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ),
+                        
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                            child: Container(
+                              width: double.infinity,
+                              height: 50,
+                              decoration: BoxDecoration(color: Color(0xff16181E)),
+                              child: Center(
+                                child: Text(
+                                  "LIHAT REKAPAN PERPASIEN",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+     Gap(8),
+                         Align(
+                          alignment: Alignment.bottomRight,
+                          child: GestureDetector(
+                            onTap: () { 
+                              showModalBottomSheet(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return Container(
+                                    height: 200,
+                                    color: Colors.white,
+                                    child: ft.Column(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        ft.Column(
+                                          children: [
+                                            Text("data",),
+                                             Text("data",),
+                                          ],
+                                        ),
+                                   
+                                        Align(
+                          alignment: Alignment.bottomRight,
+                          child: GestureDetector(
+                            onTap: () {
+                        bukaBrowser(API.CetakLaporan);
+                           Navigator.pop(context);
+                             
+                            },
+                            child: Container(
+                              width: 250,
+                              height: 50,
+                              decoration: BoxDecoration(color: Color(0xff16181E)),
+                              child: Center(
+                                child: Text(
+                                  "LIHAT",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ),
+                        
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                            child: Container(
+                              width: double.infinity,
+                              height: 50,
+                              decoration: BoxDecoration(color: Color(0xff16181E)),
+                              child: Center(
+                                child: Text(
+                                  "LIHAT REKAPAN PEMBAYARAN",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ),
+                        )
                       ],
                     ),
                       Align(
@@ -305,8 +461,10 @@ String selectedname= '';
 Gap(8),
      GestureDetector(
       onTap: (){
-        selectedIndex  = -2;
+        setState(() {
+          selectedIndex  = -2;
         selectedDateRange = null;
+        });
         p.clearButton();
       },
       child:  Container(
@@ -337,7 +495,7 @@ Widget _buildInvoiceTable(datatableValue) {
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
       child: PaginatedDataTable2(
-        source: InvoiceDataSource( datatableValue),
+        source: InvoiceDataSource( datatableValue,context),
            availableRowsPerPage: const [2, 5, 10, 30, 100],
         horizontalMargin: 20,
         checkboxHorizontalMargin: 0,
@@ -402,8 +560,8 @@ Widget _buildInvoiceTable(datatableValue) {
 
 class InvoiceDataSource extends DataTableSource {
   final List<M_BillingReport> data;
-
-  InvoiceDataSource(this.data);
+   final BuildContext context;
+  InvoiceDataSource(this.data,this.context);
 
   @override
   DataRow getRow(int index) {
@@ -459,7 +617,9 @@ class InvoiceDataSource extends DataTableSource {
                  padding: const EdgeInsets.only(left:2 ),
                  child: GestureDetector(
                   onTap: () {
-                         bukaBrowser('${API.Cetakinv}?id=${invoice.idTagihan}');
+                       
+          context.pushNamed('checkout',pathParameters: {"idtagihan" : invoice.idTagihan});
+  
                   },
                   child: Container(
                    

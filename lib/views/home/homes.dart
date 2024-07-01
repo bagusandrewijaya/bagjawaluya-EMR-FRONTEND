@@ -99,7 +99,7 @@ SizedBox(width: 8,),
                           crossAxisSpacing: 8,
                           childAspectRatio: 300 / 125,
                         ),
-                        itemCount: 3,
+                        itemCount: 1,
                         itemBuilder: (context, index) {
                           return Container(
                             margin: EdgeInsets.all(8),
@@ -127,7 +127,7 @@ SizedBox(width: 8,),
                                   Align(
                                     alignment: Alignment.bottomRight,
                                     child: Text(
-                                      "120",
+                                      "2",
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold,

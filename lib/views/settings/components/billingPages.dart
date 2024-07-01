@@ -13,9 +13,11 @@ import 'package:sibagjaapps/views/rekam_medis/components/parts/detailsMenu/cardP
 
 import 'tagihan/widgetlistobat.dart';
 import 'tagihan/widgetlistpelayanan.dart';
+
 class HideScrollBehavior extends ScrollBehavior {
   @override
-  Widget buildViewportChrome(BuildContext context, Widget child, AxisDirection axisDirection) {
+  Widget buildViewportChrome(
+      BuildContext context, Widget child, AxisDirection axisDirection) {
     return child;
   }
 }
@@ -32,124 +34,161 @@ class _CheckoutPageState extends State<CheckoutPage> {
   String? selectedPaymentMode;
   @override
   Widget build(BuildContext context) {
-  return ChangeNotifierProvider(
-    create: (context) => ProvidersDetailsBilling(widget.idTagihan),
-    child: Consumer<ProvidersDetailsBilling>(builder: (context, p, w) {
-      return Row(
-           mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            flex: 2,
-            child: ScrollConfiguration(
-              behavior: HideScrollBehavior(),
-              child: SingleChildScrollView(
-                
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Row(
-                        children: [
-                          Icon(ft.FluentIcons.back),
-                          SizedBox(width: 8),
-                          Text('Kembali / ', style: TextStyle(fontWeight: FontWeight.bold)),
-                          Text(" ${widget.idTagihan}", style: TextStyle(color: const Color.fromARGB(103, 158, 158, 158))),
-                        ],
-                      ),
-                    ),
-                    Gap(8),
-                    CardTop(
-                      showed: false,
-                      data: p.patients,
-                      catatan: TextEditingController(),
-                      savings: () {},
-                    ),
-                    SizedBox(height: 20),
-                    Container(
-                      height: 400,
-                      child: Row(
-                        children: [
-                         WidgetPelayananDiluar(p: p, idTagihan: widget.idTagihan.toString()),
-                          Gap(8),
-                         WidgetTagihanObat(p: p, idTagihan: widget.idTagihan.toString()),
-                        ],
-                      ),
-                    ),
-                    Gap(8),
-                    Container(
-                      color: Colors.white,
-                      child: Padding(
-                        padding: EdgeInsets.all(16),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+    return ChangeNotifierProvider(
+      create: (context) => ProvidersDetailsBilling(widget.idTagihan),
+      child: Consumer<ProvidersDetailsBilling>(builder: (context, p, w) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              flex: 2,
+              child: ScrollConfiguration(
+                behavior: HideScrollBehavior(),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Row(
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text('Riwayat Uang Masuk Pada Tagihan ini', style: TextStyle(fontWeight: FontWeight.bold)),
-                                Text('${p.payment.length} Riwayat'),
-                              ],
-                            ),
-                            SizedBox(height: 16),
-                            ListView.builder(
-                              shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
-                              itemCount: p.payment.length,
-                              itemBuilder: (context, index) {
-                                var item = p.payment[index];
-                                return ListPayment(
-                                  nama: "${item.deskripsi.toString()} [${item.createat.toString().substring(0, 10)}]",
-                                  price: item.amount.toString(),
-                                  delete: () {
-                                    showDialog<String>(
-                                      context: context,
-                                      builder: (context) => ft.ContentDialog(
-                                        title: const ft.Text('Hapus Item?'),
-                                        content: const Text(
-                                          'Jika Kamu Menghapus item ini maka tidak dapat di pulihkan',
-                                        ),
-                                        actions: [
-                                          ft.Button(
-                                            child: const Text('Hapus'),
-                                            onPressed: () {
-                                              // p.Deleteobat(item.idKEY);
-                                              Navigator.pop(context, 'User deleted file');
-                                              // Delete file here
-                                            },
-                                          ),
-                                          ft.FilledButton(
-                                            child: const Text('Batal'),
-                                            onPressed: () => Navigator.pop(context, 'User canceled dialog'),
-                                          ),
-                                        ],
-                                      ),
-                                    );
-                                  },
-                                );
-                              },
-                            ),
+                            Icon(ft.FluentIcons.back),
+                            SizedBox(width: 8),
+                            Text('Kembali / ',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            Text(" ${widget.idTagihan}",
+                                style: TextStyle(
+                                    color: const Color.fromARGB(
+                                        103, 158, 158, 158))),
                           ],
                         ),
                       ),
-                    ),
-                  ],
+                      Gap(8),
+                      CardTop(
+                        showed: false,
+                        data: p.patients,
+                        catatan: TextEditingController(),
+                        savings: () {},
+                      ),
+                      SizedBox(height: 20),
+                      Container(
+                        height: 400,
+                        child: Row(
+                          children: [
+                            WidgetPelayananDiluar(
+                                p: p, idTagihan: widget.idTagihan.toString(),
+                               statusTag: p.data[0].statusPaid!,
+                                ),
+                            Gap(8),
+                            WidgetTagihanObat(
+                                p: p, idTagihan: widget.idTagihan.toString(),
+                                statusTag:  p.data[0].statusPaid!,
+                                ),
+                          ],
+                        ),
+                      ),
+                      Gap(8),
+                      Container(
+                        color: Colors.white,
+                        child: Padding(
+                          padding: EdgeInsets.all(16),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text('Riwayat Uang Masuk Pada Tagihan ini',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold)),
+                                  Text('${p.payment.length} Riwayat'),
+                                ],
+                              ),
+                              SizedBox(height: 16),
+                              ListView.builder(
+                                shrinkWrap: true,
+                                physics: NeverScrollableScrollPhysics(),
+                                itemCount: p.payment.length,
+                                itemBuilder: (context, index) {
+                                  var item = p.payment[index];
+                                  return ListPayment(
+                                    nama:
+                                        "${item.deskripsi.toString()} [${item.createat.toString().substring(0, 10)}]",
+                                    price: item.amount.toString(),
+                                    delete: () {
+                                           
+                                      if (p.data[0].statusPaid == "0") {
+                                        showDialog<String>(
+                                          context: context,
+                                          builder: (context) =>
+                                              ft.ContentDialog(
+                                            title: const ft.Text('Hapus Item?'),
+                                            content: const Text(
+                                              'Jika Kamu Menghapus item ini maka tidak dapat di pulihkan',
+                                            ),
+                                            actions: [
+                                              ft.Button(
+                                                child: const Text('Hapus'),
+                                                onPressed: () {
+                                           
+                                               p.DeletePayment(item.idpayment, context);
+                                                  // Delete file here
+                                                },
+                                              ),
+                                              ft.FilledButton(
+                                                child: const Text('Batal'),
+                                                onPressed: () => Navigator.pop(
+                                                    context,
+                                                    'User canceled dialog'),
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      } else {
+                                        showDialog<String>(
+                                          context: context,
+                                          builder: (context) =>
+                                              ft.ContentDialog(
+                                            title: const ft.Text('DIKUNCI'),
+                                            content: const Text(
+                                              'Tagihan Sudah di verifikasi tagihan tidak dapat diubah Hubungi Kepala Administrasi Untuk Membuka Billing ini',
+                                            ),
+                                            actions: [
+                                              ft.FilledButton(
+                                                child: const Text('Batal'),
+                                                onPressed: () => Navigator.pop(
+                                                    context,
+                                                    'User canceled dialog'),
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      }
+                                    },
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-          SizedBox(height: 20),
-          _buildOrderSummary(p),
-        ],
-      );
-    }),
-  );
-}
-
+            SizedBox(height: 20),
+            _buildOrderSummary(p),
+          ],
+        );
+      }),
+    );
+  }
 
   Widget _buildOrderSummary(ProvidersDetailsBilling p) {
     return Expanded(
@@ -238,23 +277,21 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       Gap(8),
                       TextFormField(
                         controller: p.amountpay,
-                               keyboardType:
-                                                                TextInputType.number,
-                                                            inputFormatters: [
-                                                              CurrencyTextInputFormatter
-                                                                  .currency(
-                                                                locale: 'id',
-                                                                decimalDigits: 0,
-                                                                symbol: 'RP. ',
-                                                              ),
-                                                            ],
+                        keyboardType: TextInputType.number,
+                        inputFormatters: [
+                          CurrencyTextInputFormatter.currency(
+                            locale: 'id',
+                            decimalDigits: 0,
+                            symbol: 'RP. ',
+                          ),
+                        ],
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Jumlah Transfer',
                         ),
                       ),
                       SizedBox(height: 8),
-                      GestureDetector(
+                    if (p.data[0].statusPaid == "0")  GestureDetector(
                           onTap: () {
                             p.AddBillingOnpaymentP(context);
                           },
@@ -275,7 +312,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 SizedBox(height: 16),
                 GestureDetector(
                   onTap: () {
-        
                     bukaBrowser('${API.Cetakinv}?id=${widget.idTagihan}');
                   },
                   child: ft.Container(
@@ -290,33 +326,107 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       )),
                 ),
                 Gap(8),
-                GestureDetector(
-                    onTap: () {},
-                    child: ft.Container(
-                      height: 50,
-                      decoration: BoxDecoration(
-                          color: ft.Color.fromARGB(255, 34, 90, 255)),
-                      child: Center(
-                        child: AutoSizeText(
-                          'Bayar Tagihan Menggunakan Saldo Pasien',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                    )),
-                Gap(8),
-                GestureDetector(
-                  onTap: () {},
-                  child: ft.Container(
-                      height: 50,
-                      decoration: BoxDecoration(
-                          color: ft.Color.fromARGB(255, 255, 174, 34)),
-                      child: Center(
-                        child: AutoSizeText(
-                          'Verifikasi Pembayaran',
-                          style: TextStyle(color: Colors.white),
+                if (p.data[0].statusPaid == "0")
+                  GestureDetector(
+                      onTap: () {},
+                      child: ft.Container(
+                        height: 50,
+                        decoration: BoxDecoration(
+                            color: ft.Color.fromARGB(255, 34, 90, 255)),
+                        child: Center(
+                          child: AutoSizeText(
+                            'Bayar Tagihan Menggunakan Saldo Pasien',
+                            style: TextStyle(color: Colors.white),
+                          ),
                         ),
                       )),
-                ),
+                Gap(8),
+                if (p.data[0].statusPaid == "0")
+                  GestureDetector(
+                    onTap: () {
+ showDialog<String>(
+                                          context: context,
+                                          builder: (context) =>
+                                              ft.ContentDialog(
+                                            title: const ft.Text('Perbarui Status'),
+                                            content: const Text(
+                                              'Apakah Kamu Yakin Akan Mengubah Status Pembayaran? Pastikan Total Pembayaran Dan total yang dibayarkan sudah sesuai',
+                                            ),
+                                            actions: [
+                                              ft.Button(
+                                                child: const Text('Yakin Dan Simpan'),
+                                                onPressed: () {
+                                           p.updatestatusBilling('1', context);
+                                            
+                                                  // Delete file here
+                                                },
+                                              ),
+                                              ft.FilledButton(
+                                                child: const Text('Batal'),
+                                                onPressed: () => Navigator.pop(
+                                                    context,
+                                                    'User canceled dialog'),
+                                              ),
+                                            ],
+                                          ),
+                                        );
+
+                    },
+                    child: ft.Container(
+                        height: 50,
+                        decoration: BoxDecoration(
+                            color: ft.Color.fromARGB(255, 255, 174, 34)),
+                        child: Center(
+                          child: AutoSizeText(
+                            'Kunci dan selesaikan Billing',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        )),
+                  ),
+
+                Gap(8),
+                if (p.data[0].statusPaid == "1")
+                  GestureDetector(
+                    onTap: () {
+ showDialog<String>(
+                                          context: context,
+                                          builder: (context) =>
+                                              ft.ContentDialog(
+                                            title: const ft.Text('Perbarui Status'),
+                                            content: const Text(
+                                              'Apakah Kamu Yakin Akan Membuka Billing ini pastikan tindakan ini hanya dalam situasi insidentil',
+                                            ),
+                                            actions: [
+                                              ft.Button(
+                                                child: const Text('Yakin Dan Simpan'),
+                                                onPressed: () {
+                                           p.updatestatusBilling('0', context);
+                                            
+                                                  // Delete file here
+                                                },
+                                              ),
+                                              ft.FilledButton(
+                                                child: const Text('Batal'),
+                                                onPressed: () => Navigator.pop(
+                                                    context,
+                                                    'User canceled dialog'),
+                                              ),
+                                            ],
+                                          ),
+                                        );
+
+                    },
+                    child: ft.Container(
+                        height: 50,
+                        decoration: BoxDecoration(
+                            color: ft.Color.fromARGB(255, 255, 82, 34)),
+                        child: Center(
+                          child: AutoSizeText(
+                            'Buka Billing',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        )),
+                  ),
               ],
             ),
           ),
@@ -393,7 +503,8 @@ class ListPaketCard extends StatelessWidget {
                 children: [
                   Text(nama, style: TextStyle(fontWeight: FontWeight.bold)),
                   Gap(8),
-                  Text(toIDRCurrency(price), style: TextStyle(color: Colors.green)),
+                  Text(toIDRCurrency(price),
+                      style: TextStyle(color: Colors.green)),
                 ],
               ),
             ),
@@ -413,11 +524,6 @@ class ListPaketCard extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
 
 class ListPayment extends StatelessWidget {
   String nama;
@@ -454,7 +560,8 @@ class ListPayment extends StatelessWidget {
                 children: [
                   Text(nama, style: TextStyle(fontWeight: FontWeight.bold)),
                   Gap(8),
-                  Text(toIDRCurrency(price), style: TextStyle(color: Colors.green)),
+                  Text(toIDRCurrency(price),
+                      style: TextStyle(color: Colors.green)),
                 ],
               ),
             ),

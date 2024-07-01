@@ -1,11 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:sibagjaapps/controllers/apiservices/S_ReportBilling.dart';
+import 'package:sibagjaapps/models/M_ChartsPendapatan.dart';
 import 'package:sibagjaapps/models/M_bilingReport.dart';
 import 'package:intl/intl.dart';
 class ProviderReportBilling extends ChangeNotifier {
   ReportBillingService _service = ReportBillingService();
   List<M_BillingReport> _billing = [];
   List<M_BillingReport> get billing => _billing;
+  List<M_ChartsBilling> paymentdata = [];
   String tanggalAwal ='';
       String tanggalAkhir ='';
       String Norekam = '';
@@ -15,6 +17,7 @@ class ProviderReportBilling extends ChangeNotifier {
   }
 
   FetchAllBilling() async {
+    paymentdata = await _service.FetchBillingCharts();
     _billing = await _service.fetchReport(
       tanggalAwal: tanggalAwal,
       tanggalAkhir: tanggalAkhir,

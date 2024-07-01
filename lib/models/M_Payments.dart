@@ -1,5 +1,6 @@
 class M_PaymentsBilling {
   String? id;
+  String? idpayment;
   String? deskripsi;
   String? fRKIdTagihan;
   String? amount;
@@ -7,7 +8,7 @@ class M_PaymentsBilling {
   String? updateat;
 
   M_PaymentsBilling(
-      {this.id, this.fRKIdTagihan, this.amount, this.createat, this.updateat});
+      {this.id, this.fRKIdTagihan, this.amount, this.createat, this.updateat,this.idpayment});
 
   M_PaymentsBilling.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -16,6 +17,7 @@ class M_PaymentsBilling {
     amount = json['amount'];
     createat = json['createat'];
     updateat = json['updateat'];
+    idpayment = json['idpayment'];
   }
 
   Map<String, dynamic> toJson() {
@@ -26,6 +28,7 @@ class M_PaymentsBilling {
     data['amount'] = this.amount;
     data['createat'] = this.createat;
     data['updateat'] = this.updateat;
+    data['idpayment'] = this.idpayment;
     return data;
   }
 }
