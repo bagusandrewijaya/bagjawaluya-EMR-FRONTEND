@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sibagjaapps/utils/wrappers/mainwrapper.dart';
+import 'package:sibagjaapps/views/Billing/billingContainer.dart';
 import 'package:sibagjaapps/views/home/homes.dart';
 import 'package:sibagjaapps/views/login/V_login.dart';
 import 'package:sibagjaapps/views/patients/add_patients.dart';
@@ -9,13 +10,13 @@ import 'package:sibagjaapps/views/rekam_medis/components/parts/detailsMenu/FormC
 import 'package:sibagjaapps/views/rekam_medis/components/parts/detailsMenu/FormPKP/Formspengkajian.dart';
 
 import 'package:sibagjaapps/views/rekam_medis/mainRM.dart';
-import 'package:sibagjaapps/views/settings/components/billingPages.dart';
-import 'package:sibagjaapps/views/settings/settings.dart';
-import 'package:sibagjaapps/views/settings/keuanganViews.dart';
+import 'package:sibagjaapps/views/Billing/billingPages.dart';
+
+import 'package:sibagjaapps/views/Billing/keuanganViews.dart';
 import 'package:sibagjaapps/views/splashscreens/splashscreens.dart';
 
 import '../../views/home/children/subhomes.dart';
-import '../../views/settings/components/masterbiaya.dart';
+import '../../views/Billing/masterbiaya.dart';
 
 class AppNavigation {
   AppNavigation._();
@@ -88,7 +89,7 @@ class AppNavigation {
                 path: "/settings",
                 name: "Settings",
                 builder: (BuildContext context, GoRouterState state) =>
-                    const SettingsView(),
+                    const BillingContainer(),
                 routes: [
                   GoRoute(
                     path: "keuangan",

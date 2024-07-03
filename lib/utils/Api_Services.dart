@@ -49,8 +49,14 @@ class API {
   static String deletePayment = '${baseUrl}deletePayment';
   static String VerifikasiPembayaran = '${baseUrl}VerifikasiPembayaran';
  static String CetakLaporan = '${baseUrl}CetakLaporan';
-  
+ static String TableLaporanPayments = '${baseUrl}TableLaporanPayments';
   static String Cetakinv = '${baseUrl}Cetakinv';
+  static String HargaBulananMaster = '${baseUrl}HargaBulananMaster';
+  static String SiklusTanggal = '${baseUrl}SiklusTanggal';
+  static String functionListBankAccount = '${baseUrl}functionListBankAccount';
+  static String functionAddBankAccount = '${baseUrl}functionAddBankAccount';
+  
+
   
   
 }

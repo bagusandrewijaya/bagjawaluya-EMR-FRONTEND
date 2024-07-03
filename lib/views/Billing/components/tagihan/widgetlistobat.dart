@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fluent_ui/fluent_ui.dart' as ft;
 import 'package:gap/gap.dart';
 import 'package:sibagjaapps/controllers/providers/P_detailsBilling.dart';
-import 'package:sibagjaapps/views/settings/components/billingPages.dart';
+import 'package:sibagjaapps/views/Billing/billingPages.dart';
 class WidgetTagihanObat extends StatelessWidget {
   ProvidersDetailsBilling p;
   String idTagihan;

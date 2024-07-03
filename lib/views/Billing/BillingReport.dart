@@ -14,11 +14,12 @@ import 'package:sibagjaapps/models/M_ChartsPendapatan.dart';
 import 'package:sibagjaapps/models/M_bilingReport.dart';
 import 'package:sibagjaapps/utils/Api_Services.dart';
 import 'package:sibagjaapps/utils/idCurrencyFormater/currencyIdr.dart';
-import 'package:sibagjaapps/views/settings/components/charts/headerCharts.dart';
+import 'package:sibagjaapps/views/Billing/components/charts/headerCharts.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sibagjaapps/views/settings/components/modal/modalRekapanTahunan.dart';
-import '../../../../models/M_PasienModels.dart';
-import '../../../../utils/downloaders/Url_Launcher.dart';
+import 'package:sibagjaapps/views/Billing/components/modal/ModalRekapanPayment.dart';
+import 'package:sibagjaapps/views/Billing/components/modal/modalRekapanTahunan.dart';
+import '../../models/M_PasienModels.dart';
+import '../../utils/downloaders/Url_Launcher.dart';
 
 class InvoiceReportPage extends StatefulWidget {
   final List titles;
@@ -264,20 +265,7 @@ class _InvoiceReportPageState extends State<InvoiceReportPage> {
                                                     context: context,
                                                     builder:
                                                         (BuildContext context) {
-                                                      return Container(
-                                                        height: 200,
-                                                        color: Colors.white,
-                                                        child: Center(
-                                                          child: Text(
-                                                            "coming soon",
-                                                            style: TextStyle(
-                                                                fontSize: 20,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                          ),
-                                                        ),
-                                                      );
+                                                      return ModalRekapanPayment();
                                                     },
                                                   );
                                                 },
@@ -288,7 +276,7 @@ class _InvoiceReportPageState extends State<InvoiceReportPage> {
                                                       color: Color(0xff16181E)),
                                                   child: Center(
                                                     child: Text(
-                                                      "LIHAT REKAPAN",
+                                                      "LIHAT REKAPAN UANG MASUK ",
                                                       style: TextStyle(
                                                           color: Colors.white),
                                                     ),
@@ -384,30 +372,30 @@ class _InvoiceReportPageState extends State<InvoiceReportPage> {
                                               ),
                                             ),
                                             Gap(8),
-                                            GestureDetector(
-                                                onTap: () {
-                                                  showModalBottomSheet(
-                                                    context: context,
-                                                    builder:
-                                                        (BuildContext context) {
-                                                      return ModalRekapTahunan();
-                                                    },
-                                                  );
-                                                },
-                                                child: Container(
-                                                  width: double.infinity,
-                                                  height: 50,
-                                                  decoration: BoxDecoration(
-                                                      color: Color(0xff16181E)),
-                                                  child: Center(
-                                                    child: Text(
-                                                      "LIHAT REKAPAN",
-                                                      style: TextStyle(
-                                                          color: Colors.white),
-                                                    ),
-                                                  ),
-                                                ),
-                                              )
+                                            // GestureDetector(
+                                            //     onTap: () {
+                                            //       showModalBottomSheet(
+                                            //         context: context,
+                                            //         builder:
+                                            //             (BuildContext context) {
+                                            //           return ModalRekapTahunan();
+                                            //         },
+                                            //       );
+                                            //     },
+                                            //     child: Container(
+                                            //       width: double.infinity,
+                                            //       height: 50,
+                                            //       decoration: BoxDecoration(
+                                            //           color: Color(0xff16181E)),
+                                            //       child: Center(
+                                            //         child: Text(
+                                            //           "LIHAT REKAPAN",
+                                            //           style: TextStyle(
+                                            //               color: Colors.white),
+                                            //         ),
+                                            //       ),
+                                            //     ),
+                                            //   )
                                           ],
                                         ),
                                         Align(

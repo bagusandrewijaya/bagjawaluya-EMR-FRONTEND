@@ -6,7 +6,7 @@ import 'package:gap/gap.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:sibagjaapps/controllers/providers/P_Billing_Views.dart';
 import 'package:sibagjaapps/models/M_billingList.dart';
-import 'package:sibagjaapps/views/settings/components/tagihan/datatableswidget.dart';
+import 'package:sibagjaapps/views/Billing/components/tagihan/datatableswidget.dart';
 
 class WidgetListBilling extends StatefulWidget {
   final List<MBillingList> data ;

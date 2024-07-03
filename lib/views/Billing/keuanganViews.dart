@@ -13,11 +13,11 @@ import 'package:line_icons/line_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:sibagjaapps/controllers/providers/P_Billing_Views.dart';
 import 'package:sibagjaapps/models/M_billingList.dart';
-import 'package:sibagjaapps/views/settings/components/billingPages.dart';
-import 'package:sibagjaapps/views/settings/components/createpembayaran.dart';
-import 'package:sibagjaapps/views/settings/components/masterbiaya.dart';
+import 'package:sibagjaapps/views/Billing/billingPages.dart';
+import 'package:sibagjaapps/views/Billing/createpembayaran.dart';
+import 'package:sibagjaapps/views/Billing/masterbiaya.dart';
 import 'package:go_router/go_router.dart' as ct ;
-import 'package:sibagjaapps/views/settings/components/tagihan/BillingReport.dart';
+import 'package:sibagjaapps/views/Billing/BillingReport.dart';
 import '../../models/M_ListButton.dart';
 import 'components/SideListMenuCard.dart';
 import 'components/tagihan/widgetbilinglistBelumBayar.dart';
@@ -134,7 +134,7 @@ int i = 0;
                 ]else if(i== 2)...[
              Expanded(child: CheckoutPageManual())
                 ]else if(i == 3)...[
-              BillingInformationWidget(idTagihan: '',)
+              CompanyInfoPage()
                 ]else if(i == 4)...[
                   CheckoutPageManual()
                 ]

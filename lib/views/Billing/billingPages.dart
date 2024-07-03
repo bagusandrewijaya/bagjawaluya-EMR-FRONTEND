@@ -11,8 +11,8 @@ import 'package:sibagjaapps/utils/downloaders/Url_Launcher.dart';
 import 'package:sibagjaapps/utils/idCurrencyFormater/currencyIdr.dart';
 import 'package:sibagjaapps/views/rekam_medis/components/parts/detailsMenu/cardProfile.dart';
 
-import 'tagihan/widgetlistobat.dart';
-import 'tagihan/widgetlistpelayanan.dart';
+import 'components/tagihan/widgetlistobat.dart';
+import 'components/tagihan/widgetlistpelayanan.dart';
 
 class HideScrollBehavior extends ScrollBehavior {
   @override
