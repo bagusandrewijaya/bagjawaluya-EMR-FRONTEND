@@ -55,6 +55,8 @@ class API {
   static String SiklusTanggal = '${baseUrl}SiklusTanggal';
   static String functionListBankAccount = '${baseUrl}functionListBankAccount';
   static String functionAddBankAccount = '${baseUrl}functionAddBankAccount';
+  static String UpdateBillingMaster = '${baseUrl}UpdateBillingMaster';
+  static String UpdateStatusBank = '${baseUrl}UpdateStatusBank';
   
 
   

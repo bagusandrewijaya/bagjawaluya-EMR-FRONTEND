@@ -78,6 +78,9 @@ dependencies:
   page_flip: ^0.2.3
   currency_text_input_formatter: ^2.2.3
   modal_side_sheet: ^0.0.1
+  flutter_phoenix: ^1.1.1
+  restart_app: ^1.2.1
+  url_strategy: ^0.2.0
 
 dev_dependencies:
   flutter_test:

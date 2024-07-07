@@ -7,15 +7,24 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart'; // Import bitsdojo_window package
 import 'package:provider/provider.dart';
+import 'package:sibagjaapps/controllers/providers/P_HakAkses.dart';
 import 'package:sibagjaapps/fluentLocale.dart';
 
 import 'package:sibagjaapps/utils/navigation/main_navigation.dart';
 import 'package:window_size/window_size.dart';
+import 'package:url_strategy/url_strategy.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-
-  runApp(const MyApp());
+ setPathUrlStrategy();
+runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthProvider()),
+      ],
+      child: MyApp(),
+    ),
+  );
 
   // Enable desktop window features
   if (!kIsWeb && (Platform.isWindows || Platform.isLinux || Platform.isMacOS)) {
