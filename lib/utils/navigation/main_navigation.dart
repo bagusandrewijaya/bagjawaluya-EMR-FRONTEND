@@ -14,6 +14,7 @@ import 'package:sibagjaapps/views/Billing/billingPages.dart';
 
 import 'package:sibagjaapps/views/Billing/keuanganViews.dart';
 import 'package:sibagjaapps/views/splashscreens/splashscreens.dart';
+import 'package:sibagjaapps/views/users/listUsers.dart';
 
 import '../../views/home/children/subhomes.dart';
 import '../../views/Billing/masterbiaya.dart';
@@ -35,6 +36,9 @@ class AppNavigation {
       GlobalKey<NavigatorState>(debugLabel: 'shellPatientsz');
        static final _shellNavigatorctd =
       GlobalKey<NavigatorState>(debugLabel: 'catatan');
+             static final _shellNavigatorUsers =
+      GlobalKey<NavigatorState>(debugLabel: 'shellNavigatorUsers');
+      
   // GoRouter configuration
   static final GoRouter router = GoRouter(
     initialLocation: initial,
@@ -134,7 +138,7 @@ class AppNavigation {
               ),
             ],
           ),
-
+  
           StatefulShellBranch(
             navigatorKey: _shellNavigatorPatients,
             routes: <RouteBase>[
@@ -255,7 +259,24 @@ class AppNavigation {
                 ],
               ),
             ],
-          )
+          ),
+
+          StatefulShellBranch(
+            navigatorKey: _shellNavigatorUsers,
+            routes: <RouteBase>[
+              GoRoute(
+                path: "/pengguna",
+                name: "pengguna",
+                builder: (BuildContext context, GoRouterState state) =>
+                     DesignTeamPage(),
+                routes: [
+            
+
+                      
+                ],
+              ),
+            ],
+          ),
         ],
       ),
 

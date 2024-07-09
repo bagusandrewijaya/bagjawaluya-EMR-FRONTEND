@@ -8,11 +8,13 @@ class AuthProvider extends ChangeNotifier {
 
   AuthProvider() {
     _loadUserLevel();
+    
   }
 
   Future<void> _loadUserLevel() async {
     final prefs = await SharedPreferences.getInstance();
     _userLevel = prefs.getString('level');
+    prefs.clear();
     notifyListeners();
   }
 

@@ -99,7 +99,13 @@
                                     onTap: () {
                                       context.pushNamed("Patients");
                                     },
-                                    child: Icon(LineIcons.userFriends)),
+                                    child: Icon(LineIcons.alternateMedicalFile)),
+                                     SizedBox(height: 20),
+                                           GestureDetector(
+                                    onTap: () {
+                                      context.pushNamed("pengguna");
+                                    },
+                                    child: Icon(LineIcons.userPlus)),
                               ] else if (p.level == '2') ...[
                                 GestureDetector(
                                     onTap: () {
