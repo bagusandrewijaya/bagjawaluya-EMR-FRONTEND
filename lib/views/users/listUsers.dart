@@ -60,7 +60,41 @@ class DesignTeamPage extends StatelessWidget {
                       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
                       child: TextField(
                         decoration: InputDecoration(
-                          hintText: 'Masukan Username',
+                          hintText: 'Masukan Username untuk login',
+                          hintStyle: TextStyle(color: Colors.grey),
+                          border: InputBorder.none,
+                        ),
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                    Gap(8),
+                       Container(
+                      decoration: BoxDecoration(
+                        color: Color(0xFF2A2A3A),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: 'Masukan No tlpn',
+                          hintStyle: TextStyle(color: Colors.grey),
+                          border: InputBorder.none,
+                        ),
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                     Gap(8),
+                       Container(
+                      decoration: BoxDecoration(
+                        color: Color(0xFF2A2A3A),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+                      child: TextField(
+                        minLines: 1,
+                        maxLines: 3,
+                        decoration: InputDecoration(
+                          hintText: 'Masukan Alamat',
                           hintStyle: TextStyle(color: Colors.grey),
                           border: InputBorder.none,
                         ),
@@ -68,49 +102,68 @@ class DesignTeamPage extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 16),
-                    Text('On Click', style: TextStyle(color: Colors.grey)),
+                    Text('Password', style: TextStyle(color: Colors.grey)),
                     SizedBox(height: 8),
-                    Container(
+                    Row(
+  children: [
+    Expanded(
+      child: Container(
+        height: 50, // Add a fixed height
+        decoration: BoxDecoration(
+          color: Color(0xFF2A2A3A),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        padding: EdgeInsets.symmetric(horizontal: 16),
+        child: TextFormField(
+          decoration: InputDecoration(
+            hintText: 'Masukan Password',
+            hintStyle: TextStyle(color: Colors.grey),
+            border: InputBorder.none,
+          ),
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
+    ),
+    SizedBox(width: 10), // Add some space between the fields
+    Expanded(
+      child: Container(
+        height: 50, // Add a fixed height
+        decoration: BoxDecoration(
+          color: Color(0xFF2A2A3A),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        padding: EdgeInsets.symmetric(horizontal: 16),
+        child: TextFormField(
+          decoration: InputDecoration(
+            hintText: 'Konfirmasi Password',
+            hintStyle: TextStyle(color: Colors.grey),
+            border: InputBorder.none,
+          ),
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
+    ),
+  ],
+),
+Gap(16),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      height: 50,
                       decoration: BoxDecoration(
-                        color: Color(0xFF2A2A3A),
+                        color: Color.fromARGB(255, 156, 156, 194),
                         borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: Colors.blue),
                       ),
-                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('test@mail.com', style: TextStyle(color: Colors.white)),
-                          Icon(Icons.check, color: Colors.blue),
-                        ],
+                      child: Center(
+                        child: Text(
+                          'Tambah User',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                     ),
-                    SizedBox(height: 16),
-                    Text('Error', style: TextStyle(color: Colors.grey)),
-                    SizedBox(height: 8),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Color(0xFF2A2A3A),
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: Colors.red),
-                      ),
-                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                      child: Text('test@mail', style: TextStyle(color: Colors.red)),
-                    ),
-                    SizedBox(height: 4),
-                    Text('Please verify your mail', style: TextStyle(color: Colors.red, fontSize: 12)),
-                    SizedBox(height: 16),
-                    Text('Disabled', style: TextStyle(color: Colors.grey)),
-                    SizedBox(height: 8),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Color(0xFF2A2A3A),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                      child: Text('Enter email or username', style: TextStyle(color: Colors.grey.withOpacity(0.5)),
-                      ),
-                    ),
+                  ),
                   ],
                 ),
               );
@@ -125,7 +178,7 @@ class DesignTeamPage extends StatelessWidget {
           'Tambah Pengguna',
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.blue,
+        backgroundColor:Color(0xFF2A2A3A),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       body: ChangeNotifierProvider(
