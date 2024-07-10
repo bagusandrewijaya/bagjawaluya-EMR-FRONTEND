@@ -15,8 +15,7 @@ import 'package:window_size/window_size.dart';
 import 'package:url_strategy/url_strategy.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
- setPathUrlStrategy();
+  WidgetsFlutterBinding.ensureInitialized(); 
 runApp(
     MultiProvider(
       providers: [

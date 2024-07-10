@@ -284,75 +284,15 @@ class _InvoiceReportPageState extends State<InvoiceReportPage> {
                                                 ),
                                               ),
                                             ),
+                                            
                                             Gap(8),
-                                            Align(
-                                              alignment: Alignment.bottomRight,
-                                              child: GestureDetector(
+                                            GestureDetector(
                                                 onTap: () {
                                                   showModalBottomSheet(
                                                     context: context,
                                                     builder:
                                                         (BuildContext context) {
-                                                      return Container(
-                                                        padding:
-                                                            EdgeInsets.all(8),
-                                                        height: 200,
-                                                        color: Colors.white,
-                                                        child: ft.Column(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            ft.Column(
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                             
-                                                                Text(
-                                                                  "data",
-                                                                ),
-                                                              ],
-                                                            ),
-                                                            Align(
-                                                              alignment: Alignment
-                                                                  .bottomRight,
-                                                              child:
-                                                                  GestureDetector(
-                                                                onTap: () {
-                                                                  bukaBrowser(API
-                                                                      .CetakLaporan);
-                                                                  Navigator.pop(
-                                                                      context);
-                                                                },
-                                                                child:
-                                                                    Container(
-                                                                  width: 250,
-                                                                  height: 50,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                          color:
-                                                                              Color(0xff16181E)),
-                                                                  child: Center(
-                                                                    child: Text(
-                                                                      "LIHAT",
-                                                                      style: TextStyle(
-                                                                          color:
-                                                                              Colors.white),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      );
+                                                      return ModalRekapTahunan();
                                                     },
                                                   );
                                                 },
@@ -363,39 +303,13 @@ class _InvoiceReportPageState extends State<InvoiceReportPage> {
                                                       color: Color(0xff16181E)),
                                                   child: Center(
                                                     child: Text(
-                                                      "LIHAT REKAPAN PERPASIEN",
+                                                      "LIHAT REKAPAN TAHUNAN",
                                                       style: TextStyle(
                                                           color: Colors.white),
                                                     ),
                                                   ),
                                                 ),
-                                              ),
-                                            ),
-                                            Gap(8),
-                                            // GestureDetector(
-                                            //     onTap: () {
-                                            //       showModalBottomSheet(
-                                            //         context: context,
-                                            //         builder:
-                                            //             (BuildContext context) {
-                                            //           return ModalRekapTahunan();
-                                            //         },
-                                            //       );
-                                            //     },
-                                            //     child: Container(
-                                            //       width: double.infinity,
-                                            //       height: 50,
-                                            //       decoration: BoxDecoration(
-                                            //           color: Color(0xff16181E)),
-                                            //       child: Center(
-                                            //         child: Text(
-                                            //           "LIHAT REKAPAN",
-                                            //           style: TextStyle(
-                                            //               color: Colors.white),
-                                            //         ),
-                                            //       ),
-                                            //     ),
-                                            //   )
+                                              )
                                           ],
                                         ),
                                         Align(
@@ -592,12 +506,19 @@ class InvoiceDataSource extends DataTableSource {
               child: Container(
                   padding: EdgeInsets.all(4),
                   decoration:
-                      BoxDecoration(color: Color.fromARGB(255, 60, 177, 58)),
-                  child: Text(
-                    "CETAK BILLING",
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
-                  )),
+                      BoxDecoration(color: ft.Color.fromARGB(120, 126, 242, 124)),
+                  child: Icon(ft.FluentIcons.print,color: Colors.black,)),
+            ),
+            Gap(8),
+            GestureDetector(
+              onTap: () {
+                bukaBrowser('${API.LaporanUangMasuk}?billing=${invoice.idTagihan}');
+              },
+              child: Container(
+                  padding: EdgeInsets.all(4),
+                  decoration:
+                      BoxDecoration(color: ft.Color.fromARGB(120, 242, 146, 124)),
+                  child: Icon(ft.FluentIcons.money,color: Colors.black,)),
             ),
           ],
         )),
@@ -620,7 +541,9 @@ class InvoiceDataSource extends DataTableSource {
                   )),
             ),
           ),
-        )
+        ),
+        
+        
       ],
     );
   }

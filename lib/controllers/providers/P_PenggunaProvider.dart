@@ -5,6 +5,7 @@ import '../../models/M_Pengguna.dart';
 
 class ProviderPengguna extends ChangeNotifier {
   List<M_Pengguna> _allData = []; // Store all data
+  List<M_Pengguna> allData2 = []; // Store all data
   List<M_Pengguna> filteredData = []; // Filtered data to be displayed
   String idUsers ='';
   String selectedDropdown = '--';
@@ -39,6 +40,14 @@ TextEditingController retypePasswd =  TextEditingController();
     notifyListeners();
   }
 
+ void FetchDatabyid(idx) async {
+
+
+    allData2 = await _service.FetchDataUsersbyid(idusers: idx);
+     selectedUserId(idx);
+    notifyListeners();
+  }
+
   void FetchData() async {
     filteredData.clear();
     notifyListeners();
@@ -68,7 +77,31 @@ TextEditingController retypePasswd =  TextEditingController();
     super.dispose();
   }
 
+void updatePassword({required String idx,required BuildContext context})async{
+ int i = await _service.updatePassword(newPassword:password.text, idusers: idx
+    
+      );
 
+      if (i == 201) {
+        await ft.displayInfoBar(context, duration: const Duration(seconds: 5),
+            builder: (context, close) {
+          return ft.InfoBar(
+            style: ft.InfoBarThemeData(),
+            title: const Text('Berhasil :)'),
+            content: const Text('User telah di ubah'),
+            action: IconButton(
+              icon: const Icon(ft.FluentIcons.clear),
+              onPressed: close,
+            ),
+            severity: ft.InfoBarSeverity.success,
+          );
+        });
+            password.clear();
+            retypePasswd.clear();
+          Navigator.of(context).pop();
+      }
+
+}
 void Post(context) async {
   String levelValue = '0';
   if (selectedDropdownForInsert == '--' ||
@@ -105,9 +138,9 @@ void Post(context) async {
     if (selectedDropdownForInsert.toLowerCase() == 'administrator') {
       levelValue = '1';
     } else if (selectedDropdownForInsert.toLowerCase() == 'keperawatan') {
-      levelValue = '2';
-    } else if (selectedDropdownForInsert.toLowerCase() == 'pelayanan') {
       levelValue = '3';
+    } else if (selectedDropdownForInsert.toLowerCase() == 'pelayanan') {
+      levelValue = '2';
     }
 
     if (levelValue == '0') {
@@ -161,6 +194,29 @@ void Post(context) async {
   }
 }
 
+
+void updatestatus(idusers,status,context)async{
+  int i = await _service.Updatestatus(idusers: idusers,status: status);
+  
+      if (i == 201) {
+        await ft.displayInfoBar(context, duration: const Duration(seconds: 5),
+            builder: (context, close) {
+          return ft.InfoBar(
+            style: ft.InfoBarThemeData(),
+            title: const Text('Berhasil :)'),
+            content: const Text('User telah di ubah'),
+            action: IconButton(
+              icon: const Icon(ft.FluentIcons.clear),
+              onPressed: close,
+            ),
+            severity: ft.InfoBarSeverity.success,
+          );
+        });
+       
+             FetchData();
+          Navigator.of(context).pop();
+      }
+}
 
   void changelevelpengguna(lvl) {
     selectedDropdownForInsert = lvl;

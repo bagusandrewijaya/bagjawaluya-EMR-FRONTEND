@@ -267,8 +267,20 @@ class AppNavigation {
               GoRoute(
                 path: "/pengguna",
                 name: "pengguna",
-                builder: (BuildContext context, GoRouterState state) =>
-                     DesignTeamPage(),
+                pageBuilder: (BuildContext context, GoRouterState state) {
+                    return CustomTransitionPage<void>(
+                        key: state.pageKey,
+                        child:      DesignTeamPage(),
+                        transitionsBuilder: (
+                          context,
+                          animation,
+                          secondaryAnimation,
+                          child,
+                        ) =>
+                            FadeTransition(opacity: animation, child: child),
+                      );
+                },
+                 
                 routes: [
             
 

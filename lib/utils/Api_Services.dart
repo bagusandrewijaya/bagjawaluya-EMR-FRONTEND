@@ -59,8 +59,13 @@ class API {
   static String UpdateStatusBank = '${baseUrl}UpdateStatusBank';
   static String FetchUsers = '${baseUrl}FetchUsers';
   static String CreateUsers = '${baseUrl}CreateUsers';
+  static String FetchUsersByid = '${baseUrl}FetchUsersByid';
+  static String updatePassword = '${baseUrl}updatePassword';
+  static String updatestatusPengguna = '${baseUrl}updatestatusPengguna';
+  static String LaporanUangMasuk = '${baseUrl}LaporanUangMasuk';
   
 
-  
+
+
   
 }

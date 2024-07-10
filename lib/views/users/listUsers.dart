@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:provider/provider.dart';
-
+import 'package:fluent_ui/fluent_ui.dart' as ft;
 import 'package:sibagjaapps/models/M_Pengguna.dart';
 import 'package:sibagjaapps/views/users/components/componentsModal.dart';
 
@@ -49,6 +49,8 @@ class DesignTeamPage extends StatelessWidget {
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
           body: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Expanded(
                 flex: 3,
@@ -110,7 +112,9 @@ class DesignTeamPage extends StatelessWidget {
                           children: p.filteredData.map((item) {
                             return GestureDetector(
                               onTap: () {
-                                p.selectedUserId(item.userId!);
+                                  p.FetchDatabyid(item.userId!);
+                            
+                              
                               },
                               child: SizedBox(
                                 width: 250,
@@ -130,10 +134,206 @@ class DesignTeamPage extends StatelessWidget {
               ),
               Gap(8),
               if (p.idUsers.isNotEmpty)
-                Expanded(
-                  flex: 1,
-                  child: _buildSidebar(p),
+               Expanded(
+  flex: 1,
+  child: Container(
+    height: MediaQuery.of(context).size.height *0.5,
+    decoration: BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(8),
+    ),
+    padding: EdgeInsets.all(16),
+    child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                CircleAvatar(
+                  radius: 40,
+                  backgroundImage: AssetImage('assets/images/admin.png'),
                 ),
+                SizedBox(width: 16),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '${p.allData2[0].nama}',
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        'Detail Informasi Pengguna Sistem Bagja Waluya',
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                    ],
+                  ),
+                ),
+               
+              ],
+            ),
+            SizedBox(height: 16),
+          
+         
+            Text(
+              'Bagian',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+               SizedBox(height: 4),
+            Wrap(
+              spacing: 8,
+              children: [
+                Chip(
+                  label: Text(  '${p.allData2[0].deskripsi}',),
+                  side: const BorderSide(color: Colors.blue, width: 1), // Set border color and width
+                  backgroundColor: Colors.blue.shade50, // Set background color
+                ),
+            
+              ],
+            ),
+            SizedBox(height: 16),
+            Text(
+              'Contact Information',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            Row(
+              children: [
+                Icon(Icons.home, size: 16),
+                SizedBox(width: 8),
+                Text(  '${p.allData2[0].alamat}',),
+              ],
+            ),
+            Row(
+              children: [
+                Icon(Icons.phone, size: 16),
+                SizedBox(width: 8),
+                Text(  '${p.allData2[0].notlpn}',),
+              ],
+            ),
+          
+        
+            
+          ],
+        ),
+      Column(
+  children: [
+    GestureDetector(
+      onTap: () {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            String newPassword = '';
+            String confirmPassword = '';
+            
+            return StatefulBuilder(
+              builder: (BuildContext context, setState) {
+                return AlertDialog(
+                  title: Text('Ganti Password'),
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      TextField(
+                        controller: p.password,
+                        obscureText: true,
+                        decoration: InputDecoration(labelText: 'Password Baru'),
+                        onChanged: (value) => newPassword = value,
+                      ),
+                      TextField(
+                        controller: p.retypePasswd,
+                        obscureText: true,
+                        decoration: InputDecoration(labelText: 'Konfirmasi Password'),
+                        onChanged: (value) => confirmPassword = value,
+                      ),
+                    ],
+                  ),
+                  actions: [
+                    TextButton(
+                      child: Text('Batal'),
+                      onPressed: () => Navigator.of(context).pop(),
+                    ),
+                    ElevatedButton(
+                      child: Text('Simpan'),
+                      onPressed: ()async {
+                        if (newPassword == confirmPassword && newPassword.length > 4) {
+                          print(newPassword);
+                          print(confirmPassword);
+                     p.updatePassword(idx: p.allData2[0].userId!, context: context);
+                       
+                        } else {
+                          await ft.displayInfoBar(context, duration: const Duration(seconds: 5),
+                            builder: (context, close) {
+                              return ft.InfoBar(
+                                style: ft.InfoBarThemeData(),
+                                title: const Text('Maaf :/'),
+                                content: const Text('Password dan konfirmasi password tidak sesuai atau password kurang dari 5 digit'),
+                                action: IconButton(
+                                  icon: const Icon(ft.FluentIcons.clear),
+                                  onPressed: close,
+                                ),
+                                severity: ft.InfoBarSeverity.error,
+                              );
+                            });
+                        }
+                      },
+                    ),
+                  ],
+                );
+              }
+            );
+          },
+        );
+      },
+      child: Chip(
+        label: Text('RUBAH PASSWORD', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
+        backgroundColor: Colors.redAccent,
+      ),
+    ),
+    Gap(8),
+    GestureDetector(
+      onTap: () {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text('Ubah Status'),
+              content: Text('apakah anda yakin akan ${p.allData2[0].status.toString() == "1" ?"menonaktifkan" : "mengaktifkan"}\nJika anda menonaktifkan pengguna maka akses login akan tutup'),
+              actions: <Widget>[
+                TextButton(
+                  child: Text('Batal'),
+                  onPressed: () {
+               Navigator.pop(context);
+                  },
+                ),
+                ElevatedButton(
+                  child: Text('Simpan'),
+                  onPressed: () {
+                    print(p.allData2[0].status);
+                if(p.allData2[0].status.toString() == '0'){
+                    p.updatestatus(p.allData2[0].userId,'1',context);
+                 }else{
+                    p.updatestatus(p.allData2[0].userId,'0',context);
+                 }
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      },
+      child: Chip(
+        label: Text('Aktif/Nonaktifkan Pengguna', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
+        backgroundColor: Colors.green,
+      ),
+    ),
+  ],
+)
+      ],
+    ),
+  ),
+),
               Gap(8)
             ],
           ),
@@ -157,12 +357,10 @@ class DesignTeamPage extends StatelessWidget {
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
               Row(
                 children: [
-                  CircleAvatar(backgroundColor: Colors.green, radius: 12),
+                  CircleAvatar(backgroundColor: Colors.blue, radius: 12),
                   CircleAvatar(backgroundColor: Colors.red, radius: 12),
                   SizedBox(width: 8),
-                  Text('4',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+               
                 ],
               ),
             ],
@@ -172,88 +370,7 @@ class DesignTeamPage extends StatelessWidget {
     );
   }
 
-  Widget _buildSidebar(ProviderPengguna p) {
-    return Container(
-      decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(8)),
-      padding: EdgeInsets.all(16),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              CircleAvatar(
-                  radius: 24,
-                  backgroundImage: AssetImage('assets/images/admin.png')),
-              SizedBox(width: 16),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('${p.idUsers}',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                  Text('Art Director', style: TextStyle(color: Colors.grey)),
-                ],
-              ),
-            ],
-          ),
-          SizedBox(height: 24),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Projects',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              SizedBox(height: 16),
-              ProjectCard(
-                  title: 'The Om',
-                  subtitle: 'Meditation app',
-                  color: Colors.green),
-              SizedBox(height: 8),
-              ProjectCard(
-                  title: 'Pic.inc',
-                  subtitle: 'Stock photo website',
-                  color: Colors.orange),
-              SizedBox(height: 16),
-              ElevatedButton(
-                onPressed: () {},
-                child: Text(
-                  'Ganti Password',
-                  style: TextStyle(color: Colors.white),
-                ),
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.blue,
-                  minimumSize: Size(double.infinity, 40),
-                ),
-              ),
-              Gap(8),
-              ElevatedButton(
-                onPressed: () {},
-                child: Text(
-                  'Simpan Perubahan',
-                  style: TextStyle(color: Colors.white),
-                ),
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.blue,
-                  minimumSize: Size(double.infinity, 40),
-                ),
-              ),
-              Gap(8),
-              ElevatedButton(
-                onPressed: () {},
-                child: Text(
-                  'Hapus Akun',
-                  style: TextStyle(color: Colors.white),
-                ),
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.redAccent,
-                  minimumSize: Size(double.infinity, 40),
-                ),
-              ),
-            ],
-          )
-        ],
-      ),
-    );
-  }
+ 
 
   Widget _buildStatistic() {
     return Column(
@@ -324,14 +441,7 @@ class TeamMemberCard extends StatelessWidget {
     );
   }
 
-  Widget _buildStat(String label, int value) {
-    return Column(
-      children: [
-        Text(value.toString(), style: TextStyle(fontWeight: FontWeight.bold)),
-        Text(label, style: TextStyle(fontSize: 12, color: Colors.grey)),
-      ],
-    );
-  }
+ 
 }
 
 class ProjectCard extends StatelessWidget {
