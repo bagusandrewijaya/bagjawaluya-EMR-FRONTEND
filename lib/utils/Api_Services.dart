@@ -58,6 +58,7 @@ class API {
   static String UpdateBillingMaster = '${baseUrl}UpdateBillingMaster';
   static String UpdateStatusBank = '${baseUrl}UpdateStatusBank';
   static String FetchUsers = '${baseUrl}FetchUsers';
+  static String CreateUsers = '${baseUrl}CreateUsers';
   
 
   

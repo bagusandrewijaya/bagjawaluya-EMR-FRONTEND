@@ -6,7 +6,7 @@ import 'package:sibagjaapps/utils/Api_Services.dart';
 import 'package:sibagjaapps/utils/classLogerInit.dart';
 import 'package:sibagjaapps/utils/encryption/decryptions.dart';
 
-class APIFetchPengguna {
+class APIPengguna {
   Future<List<M_Pengguna>> FetchDataUsers() async{
     final response = await http.post(Uri.parse(API.FetchUsers), headers: API.credentialsMap,body: {
     });
@@ -18,4 +18,34 @@ class APIFetchPengguna {
       return pengguna;
   
 }
+
+
+  Future<int> createUser({
+    required String username,
+    required String password,
+    required String level,
+    required String nama,
+    required String notlpn,
+    required String alamat,
+  }) async {
+    final response = await http.post(
+      Uri.parse(API.CreateUsers),
+      headers: API.credentialsMap,
+      body:{
+     'username': username,
+        'password': password,
+        'level': level,
+        'nama': nama,
+        'notlpn': notlpn,
+        'alamat': alamat
+    
+      }
+    );
+
+
+    print(jsonDecode(response.body));
+    return jsonDecode(response.body)['metadata']['code'];
+  }
+
+
 }
