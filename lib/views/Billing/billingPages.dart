@@ -327,19 +327,19 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 ),
                 Gap(8),
                 if (p.data[0].statusPaid == "0")
-                  GestureDetector(
-                      onTap: () {},
-                      child: ft.Container(
-                        height: 50,
-                        decoration: BoxDecoration(
-                            color: ft.Color.fromARGB(255, 34, 90, 255)),
-                        child: Center(
-                          child: AutoSizeText(
-                            'Bayar Tagihan Menggunakan Saldo Pasien',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      )),
+                  // GestureDetector(
+                  //     onTap: () {},
+                  //     child: ft.Container(
+                  //       height: 50,
+                  //       decoration: BoxDecoration(
+                  //           color: ft.Color.fromARGB(255, 34, 90, 255)),
+                  //       child: Center(
+                  //         child: AutoSizeText(
+                  //           'Bayar Tagihan Menggunakan Saldo Pasien',
+                  //           style: TextStyle(color: Colors.white),
+                  //         ),
+                  //       ),
+                  //     )),
                 Gap(8),
                 if (p.data[0].statusPaid == "0")
                   GestureDetector(
