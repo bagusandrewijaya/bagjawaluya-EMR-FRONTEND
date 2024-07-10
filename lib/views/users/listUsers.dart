@@ -6,123 +6,221 @@ import 'package:sibagjaapps/models/M_Pengguna.dart';
 
 import '../../controllers/providers/P_PenggunaProvider.dart';
 
-
 class DesignTeamPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
       floatingActionButton: FloatingActionButton.extended(
-    onPressed: () {
-    showModalBottomSheet(
-                                                    context: context,
-                                                    builder:
-                                                        (BuildContext context) {
-                                                      return Container(
-                                                        height: 400,
-                                                      );
-                                                    },
-                                                  );
-    },
-    icon: Icon(Icons.add,color: Colors.white,),
-    label: Text('Tambah Pengguna',style: TextStyle(color: Colors.white),),
-    backgroundColor: Colors.blue,
+        onPressed: () {
+          showModalBottomSheet(
+            backgroundColor: Colors.transparent,
+              shape: RoundedRectangleBorder(
+     borderRadius: BorderRadius.vertical(top: Radius.circular(8)),
   ),
-  floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+
+            elevation: 0,
+            context: context,
+            builder: (BuildContext context) {
+              return Container(
+                margin: EdgeInsets.only(bottom: 31),
+                decoration: BoxDecoration(
+                  color: Color(0xFF1E1E2E), // Dark background color
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                padding: EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Tambah Users', style: TextStyle(color: Colors.grey)),
+                    SizedBox(height: 8),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Color(0xFF2A2A3A),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: 'Masukan Nama',
+                          hintStyle: TextStyle(color: Colors.grey),
+                          border: InputBorder.none,
+                        ),
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                    SizedBox(height: 16),
+                    Text('Masukan Username', style: TextStyle(color: Colors.grey)),
+                    SizedBox(height: 8),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Color(0xFF2A2A3A),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: 'Masukan Username',
+                          hintStyle: TextStyle(color: Colors.grey),
+                          border: InputBorder.none,
+                        ),
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                    SizedBox(height: 16),
+                    Text('On Click', style: TextStyle(color: Colors.grey)),
+                    SizedBox(height: 8),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Color(0xFF2A2A3A),
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: Colors.blue),
+                      ),
+                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('test@mail.com', style: TextStyle(color: Colors.white)),
+                          Icon(Icons.check, color: Colors.blue),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 16),
+                    Text('Error', style: TextStyle(color: Colors.grey)),
+                    SizedBox(height: 8),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Color(0xFF2A2A3A),
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: Colors.red),
+                      ),
+                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      child: Text('test@mail', style: TextStyle(color: Colors.red)),
+                    ),
+                    SizedBox(height: 4),
+                    Text('Please verify your mail', style: TextStyle(color: Colors.red, fontSize: 12)),
+                    SizedBox(height: 16),
+                    Text('Disabled', style: TextStyle(color: Colors.grey)),
+                    SizedBox(height: 8),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Color(0xFF2A2A3A),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      child: Text('Enter email or username', style: TextStyle(color: Colors.grey.withOpacity(0.5)),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          );
+        },
+        icon: Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
+        label: Text(
+          'Tambah Pengguna',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.blue,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       body: ChangeNotifierProvider(
         create: (context) => ProviderPengguna(),
-        child: Consumer<ProviderPengguna>(
-          builder: (context,p,w) {
-            return Row(
-              children: [
-                Expanded(
-                  flex: 3,
-                  child: Container(
-                decoration: BoxDecoration(
+        child: Consumer<ProviderPengguna>(builder: (context, p, w) {
+          return Row(
+            children: [
+              Expanded(
+                flex: 3,
+                child: Container(
+                  decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(8)
-                ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _buildHeader(),
-                       Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: Row(
-        children: [
-          Expanded(
-            child: TextField(
-              controller: p.finderbyname,
-              decoration: InputDecoration(
-                hintText: 'Search',
-                prefixIcon: Icon(Icons.search),
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-              ),
-            ),
-          ),
-          SizedBox(width: 16),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 12),
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.grey),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: DropdownButtonHideUnderline(
-              child: DropdownButton<String>(
-                value: p.selectedDropdown,
-                items:p.dropdown.map((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-                onChanged: (_) {
-                  p.changeDropdown(_!);
-                },
-              ),
-            ),
-          ),
-        ],
-      ),
-    ),
-                       Expanded(child:Padding(
-                         padding: const EdgeInsets.all(8.0),
-                         child: Wrap(
-                                crossAxisAlignment: WrapCrossAlignment.start,
-                                  spacing: 8,
-                                  runSpacing: 8,
-                               children: p.filteredData.map((item) {
-                                 return GestureDetector(
-                                  onTap: () {
-                                    p.selectedUserId(item.userId!);
+                      borderRadius: BorderRadius.circular(8)),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildHeader(),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: TextField(
+                                controller: p.finderbyname,
+                                decoration: InputDecoration(
+                                  hintText: 'Search',
+                                  prefixIcon: Icon(Icons.search),
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8)),
+                                ),
+                              ),
+                            ),
+                            SizedBox(width: 16),
+                            Container(
+                              padding: EdgeInsets.symmetric(horizontal: 12),
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: DropdownButtonHideUnderline(
+                                child: DropdownButton<String>(
+                                  value: p.selectedDropdown,
+                                  items: p.dropdown.map((String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Text(value),
+                                    );
+                                  }).toList(),
+                                  onChanged: (_) {
+                                    p.changeDropdown(_!);
                                   },
-                                   child: SizedBox(
-                                     width: 250,
-                                     child: TeamMemberCard(
-                                       name: item.nama!,
-                                       role: item.deskripsi!,
-                                       status: item.status!,
-                                     
-                                     ),
-                                   ),
-                                 );
-                               }).toList(),
-                             ),
-                       ))
-                      ],
-                    ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                          child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Wrap(
+                          crossAxisAlignment: WrapCrossAlignment.start,
+                          spacing: 8,
+                          runSpacing: 8,
+                          children: p.filteredData.map((item) {
+                            return GestureDetector(
+                              onTap: () {
+                                p.selectedUserId(item.userId!);
+                              },
+                              child: SizedBox(
+                                width: 250,
+                                child: TeamMemberCard(
+                                  name: item.nama!,
+                                  role: item.deskripsi!,
+                                  status: item.status!,
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ))
+                    ],
                   ),
                 ),
-                Gap(8),
-              if(p.idUsers.isNotEmpty)  Expanded(
+              ),
+              Gap(8),
+              if (p.idUsers.isNotEmpty)
+                Expanded(
                   flex: 1,
                   child: _buildSidebar(p),
                 ),
-                Gap(8)
-              ],
-            );
-          }
-        ),
+              Gap(8)
+            ],
+          );
+        }),
       ),
     );
   }
@@ -138,13 +236,16 @@ class DesignTeamPage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Akses Pengguna', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+              Text('Akses Pengguna',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
               Row(
                 children: [
                   CircleAvatar(backgroundColor: Colors.green, radius: 12),
                   CircleAvatar(backgroundColor: Colors.red, radius: 12),
                   SizedBox(width: 8),
-                  Text('4', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  Text('4',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 ],
               ),
             ],
@@ -154,76 +255,83 @@ class DesignTeamPage extends StatelessWidget {
     );
   }
 
-
-
- 
-
   Widget _buildSidebar(ProviderPengguna p) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(8)
-      ),
+          color: Colors.white, borderRadius: BorderRadius.circular(8)),
       padding: EdgeInsets.all(16),
       child: Column(
         children: [
-    Row(
-      children: [
-        CircleAvatar(radius: 24, backgroundImage: AssetImage('assets/images/admin.png')),
-        SizedBox(width: 16),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('${p.idUsers}', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-            Text('Art Director', style: TextStyle(color: Colors.grey)),
-          ],
-        ),
-      ],
-    ),
+          Row(
+            children: [
+              CircleAvatar(
+                  radius: 24,
+                  backgroundImage: AssetImage('assets/images/admin.png')),
+              SizedBox(width: 16),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('${p.idUsers}',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  Text('Art Director', style: TextStyle(color: Colors.grey)),
+                ],
+              ),
+            ],
+          ),
           SizedBox(height: 24),
-      Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('Projects', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-        SizedBox(height: 16),
-        ProjectCard(title: 'The Om', subtitle: 'Meditation app', color: Colors.green),
-        SizedBox(height: 8),
-        ProjectCard(title: 'Pic.inc', subtitle: 'Stock photo website', color: Colors.orange),
-        SizedBox(height: 16),
-          ElevatedButton(
-          onPressed: () {},
-          child: Text('Ganti Password',style: TextStyle(
-            color: Colors.white
-          ),),
-          style: ElevatedButton.styleFrom(
-            primary: Colors.blue,
-            minimumSize: Size(double.infinity, 40),
-          ),
-        ),
-        Gap(8),
-        ElevatedButton(
-          onPressed: () {},
-          child: Text('Simpan Perubahan',style: TextStyle(
-            color: Colors.white
-          ),),
-          style: ElevatedButton.styleFrom(
-            primary: Colors.blue,
-            minimumSize: Size(double.infinity, 40),
-          ),
-        ),
-      ],
-    )
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Projects',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              SizedBox(height: 16),
+              ProjectCard(
+                  title: 'The Om',
+                  subtitle: 'Meditation app',
+                  color: Colors.green),
+              SizedBox(height: 8),
+              ProjectCard(
+                  title: 'Pic.inc',
+                  subtitle: 'Stock photo website',
+                  color: Colors.orange),
+              SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: () {},
+                child: Text(
+                  'Ganti Password',
+                  style: TextStyle(color: Colors.white),
+                ),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.blue,
+                  minimumSize: Size(double.infinity, 40),
+                ),
+              ),
+              Gap(8),
+              ElevatedButton(
+                onPressed: () {},
+                child: Text(
+                  'Simpan Perubahan',
+                  style: TextStyle(color: Colors.white),
+                ),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.blue,
+                  minimumSize: Size(double.infinity, 40),
+                ),
+              ),
+            ],
+          )
         ],
       ),
     );
   }
 
-
   Widget _buildStatistic() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('My Statistic', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+        Text('My Statistic',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
         SizedBox(height: 16),
         CircularPercentIndicator(
           radius: 80.0,
@@ -238,8 +346,6 @@ class DesignTeamPage extends StatelessWidget {
       ],
     );
   }
-
- 
 }
 
 class TeamMemberCard extends StatelessWidget {
@@ -247,12 +353,9 @@ class TeamMemberCard extends StatelessWidget {
   final String role;
   final String status;
 
-  const TeamMemberCard({
-    Key? key,
-    required this.name,
-    required this.role,
-    required this.status
-  }) : super(key: key);
+  const TeamMemberCard(
+      {Key? key, required this.name, required this.role, required this.status})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -262,9 +365,12 @@ class TeamMemberCard extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            CircleAvatar(radius: 32, backgroundImage: AssetImage('assets/images/admin.png')),
+            CircleAvatar(
+                radius: 32,
+                backgroundImage: AssetImage('assets/images/admin.png')),
             SizedBox(height: 8),
-            Text(name, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+            Text(name,
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
             Text(role, style: TextStyle(color: Colors.grey)),
             SizedBox(height: 16),
             // Row(
@@ -277,13 +383,12 @@ class TeamMemberCard extends StatelessWidget {
             // ),
             SizedBox(height: 8),
             LinearProgressIndicator(
-              value:  100,
+              value: 100,
               backgroundColor: Colors.grey[200],
-              valueColor: AlwaysStoppedAnimation<Color>(status == "1" ? Colors.blue : Colors.red),
+              valueColor: AlwaysStoppedAnimation<Color>(
+                  status == "1" ? Colors.blue : Colors.red),
             ),
             SizedBox(height: 4),
-   
-         
           ],
         ),
       ),
