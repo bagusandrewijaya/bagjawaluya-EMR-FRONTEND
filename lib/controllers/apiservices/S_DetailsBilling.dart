@@ -160,4 +160,20 @@ class APIDetailsBilling {
 
     return response.statusCode;
   }
+
+Future<int> updatestatuspasien(
+      {required String norm,
+      required String status,}) async {
+    final response = await http.post(Uri.parse(API.updatestatuspasien),
+        headers: API.credentialsMap,
+        body: {
+          "idusers": norm,
+          "status": status,
+         
+        });
+
+    return response.statusCode;
+  }
+
+
 }

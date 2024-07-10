@@ -71,6 +71,9 @@ class _DetailsPatientState extends ft.State<DetailsPatient> {
                                   savings: (){
                                   prov.updatecataatan(context);
                                   },
+                                  statuschange: () {
+                                    
+                                  },
                                 )
                               : Container(),
                           Positioned(

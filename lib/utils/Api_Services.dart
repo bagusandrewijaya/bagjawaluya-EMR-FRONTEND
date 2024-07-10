@@ -63,8 +63,8 @@ class API {
   static String updatePassword = '${baseUrl}updatePassword';
   static String updatestatusPengguna = '${baseUrl}updatestatusPengguna';
   static String LaporanUangMasuk = '${baseUrl}LaporanUangMasuk';
+  static String updatestatuspasien = '${baseUrl}updatestatuspasien';
   
-
 
 
   

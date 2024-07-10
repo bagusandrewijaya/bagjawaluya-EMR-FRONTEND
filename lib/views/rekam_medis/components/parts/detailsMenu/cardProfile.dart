@@ -18,12 +18,14 @@ class CardTop extends StatefulWidget {
   TextEditingController catatan;
   bool? showed ;
  final void Function() savings;
+  final void Function() statuschange;
    CardTop({
     super.key,
     required this.data,
     required this.catatan,
     required this.savings,
-    required this.showed
+    required this.showed,
+    required this.statuschange
   });
 
 
@@ -102,15 +104,45 @@ class _CardTopState extends State<CardTop> {
                                           children: [
                                             Text("${widget.data[0].namaPasien}", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900),),
                                             Gap(8),
-                                            Container(
-                                              padding: EdgeInsets.all(4),
-                                              decoration: BoxDecoration(
-                                                color: const Color.fromARGB(255, 10, 133, 73),
-                                                borderRadius: BorderRadius.circular(16)
+                                            GestureDetector(
+                                              onTap: () {
+                                                showDialog<String>(
+                                                  context: context,
+                                                  builder: (context) => AlertDialog(
+                                                    title: Text('Ubah Status Pasien'),
+                                                    content: Text('apakah anda yakin akan mengubah status pasiene menjadi ${widget.data[0].status.toString() != "1" ?"Active" :"Unactive"}'),
+                                                    actions: <Widget>[
+                                                        TextButton(
+                                                        onPressed: () {
+                                                          // Add your action here
+                                                    
+                                                          Navigator.pop(context);
+                                                        },
+                                                        child: Text('tutup'),
+                                                      ),
+                                                      TextButton(
+                                                        onPressed: () {
+                                                          // Add your action here
+                                                         
+                                                         widget.statuschange();
+                                                          Navigator.pop(context);
+                                                        },
+                                                        child: Text('Ubah'),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                );
+                                              },
+                                              child: Container(
+                                                padding: EdgeInsets.all(4),
+                                                decoration: BoxDecoration(
+                                                  color: widget.data[0].status.toString() == "1" ? const Color.fromARGB(255, 10, 133, 73): Colors.red,
+                                                  borderRadius: BorderRadius.circular(16)
+                                                ),
+                                                child: Text( widget.data[0].status.toString() == "1" ?"Active" :"Unactive", style: TextStyle(
+                                                  color: Colors.white, fontSize: 12
+                                                ),),
                                               ),
-                                              child: Text("Active", style: TextStyle(
-                                                color: Colors.white, fontSize: 12
-                                              ),),
                                             ),
                                           ],
                                         ),

@@ -73,6 +73,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
                         data: p.patients,
                         catatan: TextEditingController(),
                         savings: () {},
+                        statuschange: () {
+                          p.updatestatus(p.patients[0].noRM,"${p.patients[0].status.toString() == "1" ? "0" : "1"}",context);
+                        },
                       ),
                       SizedBox(height: 20),
                       Container(

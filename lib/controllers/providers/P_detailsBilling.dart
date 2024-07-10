@@ -231,6 +231,24 @@ class ProvidersDetailsBilling extends ChangeNotifier {
     }
   }
 
+updatestatus(idpatient,status,context)async{
+int i = await _service.updatestatuspasien(norm:idpatient, status: status);
+if (i == 201) {
+   await displayInfoBar(context, builder: (context, close) {
+        return InfoBar(
+          title: const Text('Berhasik :/'),
+          content:
+              const Text('status pasien sudah diubah'),
+          action: IconButton(
+            icon: const Icon(FluentIcons.clear),
+            onPressed: close,
+          ),
+          severity: InfoBarSeverity.warning,
+        );
+      });
+        FetchData(idtagihan);
+}
+}
   AddBillingOnpaymentP(context) async {
     int response = await _service.AddpaymentOnBilling(
         idlayanan: idtagihan,
