@@ -82,7 +82,11 @@ dependencies:
   restart_app: ^1.2.1
   url_strategy: ^0.2.0
   percent_indicator: ^4.2.3
+<<<<<<< Updated upstream
   flutter_launcher_icons: ^0.13.1
+=======
+  overlay_loader_with_app_icon: ^0.0.4
+>>>>>>> Stashed changes
 
 dev_dependencies:
   flutter_test:

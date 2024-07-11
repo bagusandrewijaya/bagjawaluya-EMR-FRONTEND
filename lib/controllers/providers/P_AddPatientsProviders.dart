@@ -34,6 +34,7 @@ class AddPatientsProviders extends ChangeNotifier {
   String get selectedGender => _selectedGender;
   String jk = 'L';
   String NoRM = '-';
+  bool isLoading = false;
   TextEditingController get nama => _name;
   TextEditingController get namayah => _namayah;
   TextEditingController get namaibu => _namaibu;
@@ -80,12 +81,15 @@ class AddPatientsProviders extends ChangeNotifier {
   }
 
   AddPatientsProviders(nrm) {
+
     NoRM = nrm;
     fetchdata();
     notifyListeners();
   }
 
   fetchdata() async {
+    isLoading = true;
+    notifyListeners();
     if (NoRM != '-') {
       _dataz = await _service2.FetchDataDetails(NoRM);
       var i = _dataz[0];
@@ -124,8 +128,10 @@ class AddPatientsProviders extends ChangeNotifier {
         }
       });
 
-      notifyListeners();
     }
+     isLoading = false;
+
+      notifyListeners();
   }
 
   Future<void> selectDate(BuildContext context) async {
@@ -205,7 +211,8 @@ class AddPatientsProviders extends ChangeNotifier {
   }
 
   void PostPatient(context) async {
-  
+     isLoading = true;
+    notifyListeners();
       if (_name.text.isEmpty ||
           _alamat.text.isEmpty ||
           _alamatk.text.isEmpty ||
@@ -240,7 +247,7 @@ class AddPatientsProviders extends ChangeNotifier {
             _kontak.text,
             _alamatk.text,
             _penjamin.text,
-            _saldoawal.text,
+            '00',
             context,
             _namaibu.text,
             _ktp.text,
@@ -252,6 +259,11 @@ class AddPatientsProviders extends ChangeNotifier {
             suku.text,
             pendidikan.text,
             hubungan.text);
+                Future.delayed(Duration(seconds: 2)).then((value) {
+                    isLoading = false;
+                      notifyListeners();
+                },);
+  
       } else {
         _service.putPatients(
             nama: _name.text,
@@ -277,7 +289,11 @@ class AddPatientsProviders extends ChangeNotifier {
 
             print("${NoRM}");
       
-
+    Future.delayed(Duration(seconds: 2)).then((value) {
+                    isLoading = false;
+                      notifyListeners();
+                },);
+  
     }
   }
 }

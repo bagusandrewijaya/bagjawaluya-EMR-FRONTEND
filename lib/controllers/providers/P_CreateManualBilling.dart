@@ -1,3 +1,4 @@
+import 'package:fluent_ui/fluent_ui.dart' as ft;
 import 'package:flutter/material.dart';
 import 'package:sibagjaapps/controllers/apiservices/S_CreateManualBilling.dart';
 import 'package:uuid/uuid.dart';
@@ -34,6 +35,36 @@ class CreateManualBilling extends ChangeNotifier {
     notifyListeners();
   }
 
+
+Future<String> pushData(RM, biayaBulanan, tanggal, context) async {
+  String res = '0';
+  if (RM != null && biayaBulanan != null && tanggal != null && RM.isNotEmpty && biayaBulanan.isNotEmpty && tanggal.isNotEmpty) {
+    String i = await _service.CreatePayment(RM: RM, biayaBulanan: biayaBulanan.replaceAll('RP. ', '').replaceAll('.', ''), tanggal: tanggal);
+   res = i;
+   notifyListeners();
+   
+    if (i != null) {
+      await ft.displayInfoBar(context, duration: const Duration(seconds: 5),
+          builder: (context, close) {
+        return ft.InfoBar(
+          style: ft.InfoBarThemeData(),
+          title: const Text(' :)'),
+          content: const Text('Berhasil merubah status Bank Account'),
+          action: ft.IconButton(
+            icon: const Icon(ft.FluentIcons.clear),
+            onPressed: close,
+          ),
+          severity: ft.InfoBarSeverity.success,
+        );
+      });
+   
+
+                        
+    }
+     
+  }
+ return res;
+}
   void TambahData(BuildContext context) {
     if (namaLayanan.text.isEmpty || hargaLayanan.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(

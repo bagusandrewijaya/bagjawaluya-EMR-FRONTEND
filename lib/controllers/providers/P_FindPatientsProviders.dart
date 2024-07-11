@@ -1,11 +1,15 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:sibagjaapps/controllers/apiservices/S_DetailsPatients.dart';
 import 'package:sibagjaapps/controllers/apiservices/S_FindPatientApiService.dart';
 import 'package:sibagjaapps/models/M_PasienModels.dart';
+import 'package:sibagjaapps/models/M_detailsPatients.dart';
 
 class FindPatienProvider extends ChangeNotifier {
   FindPatientApiService _service = FindPatientApiService();
+    ApiDetailsPatients ApiPatients = ApiDetailsPatients();
   List<ModelPasien> _finderName  = [];
   List<ModelPasien> _patient  = [];
+   List<DetailsPatients> detailpatients  = [];
   List<ModelPasien> get finderName => _finderName;
   List<ModelPasien> get patient => _patient;
   String _name = '';
@@ -23,6 +27,10 @@ notifyListeners();
 }
 
 
+void FetchForHeader(rm) async{
+  detailpatients = await ApiPatients.FetchDataDetails(rm);
+  notifyListeners();
+}
 SETname(name) {
 
   Nameselected  = name;

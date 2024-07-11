@@ -391,7 +391,7 @@ class _InvoiceReportPageState extends State<InvoiceReportPage> {
       width: MediaQuery.of(context).size.width,
       child: PaginatedDataTable2(
         source: InvoiceDataSource(datatableValue, context),
-        availableRowsPerPage: const [2, 5, 10, 30, 100],
+      rowsPerPage: 50,
         horizontalMargin: 20,
         checkboxHorizontalMargin: 0,
         columnSpacing: 0,
