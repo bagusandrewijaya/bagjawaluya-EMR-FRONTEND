@@ -86,13 +86,7 @@ class _HomeViewState extends State<HomeView> {
                                     dismissWithEsc: true,
                                     builder: (context) {
                                       return ft.MenuFlyout(items: [
-                                        ft.MenuFlyoutItem(
-                                          leading: const Icon(
-                                              ft.FluentIcons.user_sync),
-                                          text: const Text('Details'),
-                                          onPressed:
-                                              ft.Flyout.of(context).close,
-                                        ),
+                                       
                                         ft.MenuFlyoutItem(
                                             leading: const Icon(
                                                 ft.FluentIcons.sign_out),
