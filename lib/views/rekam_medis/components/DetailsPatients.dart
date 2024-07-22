@@ -127,68 +127,7 @@ class _DetailsPatientState extends ft.State<DetailsPatient> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          if (isopenleft == true)
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  AnimatedContainer(
-                                    duration: Duration(milliseconds: 500),
-                                    curve: Curves.easeInOut,
-                                    height: isopenleft ? 40 : 20,
-                                    child: Container(
-                                      color: Colors.white,
-                                      height: 40,
-                                      child: Align(
-                                        alignment: Alignment.bottomRight,
-                                        child: GestureDetector(
-                                          onTap: () {
-                                            setState(() {
-                                              isopenleft = !isopenleft;
-                                            });
-                                          },
-                                          child: Container(
-                                            width: 50,
-                                            height: 40,
-                                            child: Icon(
-                                              isopenleft
-                                                  ? Icons.fullscreen_exit
-                                                  : Icons.fullscreen,
-                                              size: 30,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  isopenleft == true
-                                      ? LastActivity()
-                                      : SizedBox()
-                                ],
-                              ),
-                            )
-                          else
-                            GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  isopenleft = !isopenleft;
-                                });
-                              },
-                              child: Container(
-                                color: Colors.white,
-                                width: 50,
-                                height: 40,
-                                child: Icon(
-                                  isopenleft
-                                      ? Icons.fullscreen_exit
-                                      : Icons.fullscreen,
-                                  size: 30,
-                                ),
-                              ),
-                            ),
-                          SizedBox(
-                            width: 8,
-                          ),
+                       
                           if (isopenright == true)
                             Expanded(
                               flex: 2,
