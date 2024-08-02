@@ -24,7 +24,7 @@ BuildContext context;
     return DataRow(cells: [
       DataCell(Text(_data[index].createdAt.toString().substring(0,11))),
       DataCell(Text(_data[index].namaPasien.toString())),
-      DataCell(Text(_data[index].batasBayar.toString().substring(0,11))),
+
       DataCell(Text(_data[index].total.toString())),
       DataCell(GestureDetector(
         onTap: () {

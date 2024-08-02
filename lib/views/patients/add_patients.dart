@@ -159,7 +159,7 @@ class _AddPatientsState extends State<AddPatients> {
                                           children: [
                                               Container(
                                               width:
-                                                  120, // Atur lebar sesuai kebutuhan
+                                                  150, // Atur lebar sesuai kebutuhan
                                               height:
                                                   50, // Atur tinggi sesuai kebutuhan
                                               child: TextField(
@@ -265,7 +265,7 @@ class _AddPatientsState extends State<AddPatients> {
                                             ),
                                             Container(
                                               width:
-                                                  120, // Atur lebar sesuai kebutuhan
+                                                  150, // Atur lebar sesuai kebutuhan
                                               height:
                                                   50, // Atur tinggi sesuai kebutuhan
                                               child: TextField(
@@ -641,51 +641,7 @@ class _AddPatientsState extends State<AddPatients> {
                                 ),
                               ),
                                 
-                                        if (widget.norekam == '-') ...[
-                                          HeaderTitleGradient(
-                                            text: "Penjamin Pasien*",
-                                          ),
-                                          Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Container(
-                                                width:
-                                                    300, // Atur lebar sesuai kebutuhan
-                                                // Atur tinggi sesuai kebutuhan
-                                                child: TextField(
-                                                  keyboardType: TextInputType
-                                                      .numberWithOptions(
-                                                          decimal: true),
-                                                  inputFormatters: [
-                                                    FilteringTextInputFormatter
-                                                        .allow(RegExp(
-                                                            r'^\d+\.?\d{0,2}')),
-                                                  ],
-                                                  controller: provider.penjamin,
-                                                  decoration: InputDecoration(
-                                                    isDense: true, // Added this
-                                                    contentPadding:
-                                                        EdgeInsets.all(8),
-                                                    prefixText: 'Rp ',
-                                                    hintText: 'Deposit Penjamin',
-                                                    border: OutlineInputBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                width: 16,
-                                              ),
-                                             
-                                            ],
-                                          ),
-                                        ]
+                                       
                                       ],
                                     ),
                                     GestureDetector(

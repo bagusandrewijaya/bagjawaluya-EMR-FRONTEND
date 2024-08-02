@@ -140,7 +140,7 @@ String getDateRangeFromIndex(int index) {
                       columns: [
                         DataColumn(label: Text('Tanggal')),
                         DataColumn(label: Text('Nama Pasien')),
-                        DataColumn(label: Text('Tanggal Batas Transakasi')),
+                    
                         DataColumn(label: Text('Rp')),
                         DataColumn(label: Text('Status Pembayaran')),
                       ],

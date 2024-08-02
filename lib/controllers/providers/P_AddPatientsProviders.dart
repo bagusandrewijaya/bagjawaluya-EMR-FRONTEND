@@ -246,7 +246,7 @@ class AddPatientsProviders extends ChangeNotifier {
             _namayah.text,
             _kontak.text,
             _alamatk.text,
-            _penjamin.text,
+            '00',
             '00',
             context,
             _namaibu.text,
