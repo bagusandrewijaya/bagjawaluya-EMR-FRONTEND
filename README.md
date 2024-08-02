@@ -38,6 +38,3 @@ Aplikasi manajemen rekam medis elektronik (EMR) dan sistem penagihan terintegras
 
 [MIT License](LICENSE)
 
-## Kontak
-
-Untuk pertanyaan dan dukungan, silakan hubungi tim IT Bagja Waluya di it@bagjawaluya.com.
